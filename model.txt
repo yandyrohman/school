@@ -1,0 +1,136 @@
+list table
+
+- users
+username
+password
+role
+last_login
+
+- common
+logo
+location_text
+location_coordinate
+phone
+phone_wa
+email
+etc (kasih default di inputan : Senin - Jum'at | 07.00 - 17.00)
+facebook
+instagram
+youtube
+twitter
+
+- face
+photo
+title
+text
+
+- event
+title
+text
+is_active
+created_at
+
+- about
+title
+text
+youtube_link
+
+- vm
+type (visi|misi)
+value
+
+- staff
+user_id
+teacher_number
+name
+position
+gender
+birth_date
+birth_place
+religion
+address
+village
+district
+city
+province
+phone
+email
+photo
+
+- student
+user_id
+class_id
+student_number
+national_student_number
+name
+gender
+dad_name
+mom_name
+birth_date
+birth_place
+religion
+address
+village
+district
+city
+province
+phone
+email
+photo
+achievement_ids
+
+- class
+majors_id
+name
+
+- achievement
+reference (agar bisa di group)
+title
+category (juara1, juara2, juara_favorit, juara_umum, juara_harapan1, ...)
+year
+location
+student_ids
+story (text)
+photo
+
+- gallery
+title
+thumbnail
+created_at
+
+- photo
+gallery_id
+photo
+
+- extra
+name
+photo
+text
+etc (placeholder input : misal hari senin, selasa dan rabu jam 16.00)
+logo
+
+- facility
+name
+text
+photo
+
+- news
+title
+text
+created_at
+
+- download
+name
+link
+summary
+created_at
+
+- majors
+name
+text
+logo
+
+- faq
+question
+answer
+
