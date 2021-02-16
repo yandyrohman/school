@@ -5,7 +5,9 @@ class AdminCommon extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/app');
+		$this->load->view('admin/app', [
+			'view' => 'admin/common/index'
+		]);
 	}
 
 }
