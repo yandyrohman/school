@@ -1,0 +1,23 @@
+Pengumuman
+Umum
+- Tampilan Depan
+- Profile Sekolah
+- Visi Misi
+Kegiatan
+- Galeri Foto
+- Prestasi
+Data Internal
+- Staff & Pengajar
+- Siswa
+- PPDB
+Data Sekolah
+- Jurusan
+- Fasilitas
+- Extrakurikuler
+Data Lainnya
+- Berita
+- Download Area
+Pengaturan
+- Kelola User
+Kontak
+Logout

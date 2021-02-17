@@ -6,13 +6,12 @@
             </a>
             <div class="navbar-brand">
                 <a href="index.html" class="logo">
-                    <b class="logo-icon">
+                    <!-- <b class="logo-icon">
                         <img src="../../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                         <img src="../../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-                    </b>
+                    </b> -->
                     <span class="logo-text">
-                        <img src="../../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                        <img src="../../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                        <img class="logo-img" src="<?= base_url().'img/profile/logo.png' ?>" alt="homepage" />
                     </span>
                 </a>
             </div>
@@ -47,3 +46,9 @@
         </div>
     </nav>
 </header>
+
+<style>
+.logo-img {
+    height: 40px;
+}
+</style>
