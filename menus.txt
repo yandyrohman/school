@@ -1,11 +1,8 @@
 Pengumuman
-Umum
+Data Umum
 - Tampilan Depan
 - Profile Sekolah
 - Visi Misi
-Kegiatan
-- Galeri Foto
-- Prestasi
 Data Internal
 - Staff & Pengajar
 - Siswa
@@ -17,6 +14,9 @@ Data Sekolah
 Data Lainnya
 - Berita
 - Download Area
+Kegiatan
+- Galeri Foto
+- Prestasi
 Pengaturan
 - Kelola User
 Kontak

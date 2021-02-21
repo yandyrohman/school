@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>School Admin</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="<?= base_url().'assets/dist/css/style.min.css' ?>" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
 </head>
 
 <body>
@@ -22,8 +25,6 @@
         </div>
 
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     
 </body>
 
