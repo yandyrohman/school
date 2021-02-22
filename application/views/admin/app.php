@@ -35,8 +35,13 @@
 
     }
 
+    body {
+        background: #eee;
+    }
+
     .content-wrapper {
         width: calc(100% - 250px);
         margin-left: 250px;
+        padding-top: 20px;
     }
 </style>
