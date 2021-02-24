@@ -8,8 +8,8 @@
     <title>School Admin</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="<?= base_url().'assets/dist/css/style.min.css' ?>" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
 </head>
 

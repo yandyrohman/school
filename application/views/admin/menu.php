@@ -3,7 +3,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('event') ?>"
                         aria-expanded="false">
                         <i class="material-icons">book_online</i>
                         <span class="hide-menu">Pengumuman</span>

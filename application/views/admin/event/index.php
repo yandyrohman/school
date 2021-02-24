@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       <b>Pengumuman</b>
-      <a class="btn btn-primary btn-sm" href="" style="justify-self: end">
+      <a class="btn btn-primary btn-sm" href="<?= base_url('event/create') ?>" style="justify-self: end">
         <i class="material-icons">add</i>
         <span>TAMBAH</span>
       </a>
