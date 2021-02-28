@@ -8,6 +8,9 @@
       </a>
     </div>
     <div class="card-body">
+      <?php if($msg) : ?>
+        <?= $msg ?>
+      <?php endif; ?>
       <table class="table">
         <thead>
           <tr>
@@ -18,56 +21,40 @@
           </tr>
         </thead>
         <tbody>
+          <?php foreach($datas as $i => $data) : ?>
           <tr>
-            <td>1</td>
-            <td>Jadwal UTS Ganjil 2021</td>
+            <td><?= $i + 1 ?></td>
+            <td><?= $data->title ?></td>
             <td>
-              <span class="label label-success label-rounded">AKTIF</span>
+              <?php if($data->is_active == 1) : ?>
+                <span class="label label-success label-rounded">AKTIF</span>
+              <?php else : ?>
+                <span class="label label-danger label-rounded">NON AKTIF</span>
+              <?php endif; ?>
             </td>
             <td class="flex">
-              <a class="btn btn-sm btn-primary" href="#">
+              <a class="btn btn-sm btn-primary" href="<?= base_url('/event/edit/'.$data->id) ?>">
                 <i class="material-icons">create</i>
               </a>
-              <a class="btn btn-sm btn-danger ml-1" href="#">
+              <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
                 <i class="material-icons">delete</i>
               </a>
             </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Jadwal UTS Ganjil 2021</td>
-            <td>
-              <span class="label label-success label-rounded">AKTIF</span>
-            </td>
-            <td class="flex">
-              <a class="btn btn-sm btn-primary" href="#">
-                <i class="material-icons">create</i>
-              </a>
-              <a class="btn btn-sm btn-danger ml-1" href="#">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Jadwal UTS Ganjil 2021</td>
-            <td>
-              <span class="label label-success label-rounded">AKTIF</span>
-            </td>
-            <td class="flex">
-              <a class="btn btn-sm btn-primary" href="#">
-                <i class="material-icons">create</i>
-              </a>
-              <a class="btn btn-sm btn-danger ml-1" href="#">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+<script>
+  function deleteData(id) {
+    if(confirm('Hapus data ini ?')) {
+      window.location = `<?= base_url() ?>event/delete/${id}`
+    }
+  }
+</script>
 
 <style>
   .notif-green {

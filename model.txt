@@ -6,12 +6,11 @@ password
 role
 last_login
 
-- common
+- profile
 logo
-location_text
-location_coordinate
+address
 phone
-phone_wa
+wa
 email
 etc (kasih default di inputan : Senin - Jum'at | 07.00 - 17.00)
 facebook
