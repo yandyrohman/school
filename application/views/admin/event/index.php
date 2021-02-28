@@ -21,6 +21,13 @@
           </tr>
         </thead>
         <tbody>
+
+          <?php if(count($datas) == 0) : ?>
+          <tr>
+            <td colspan="4" class="text-center">- data kosong -</td>
+          </tr>
+          <?php endif; ?>
+          
           <?php foreach($datas as $i => $data) : ?>
           <tr>
             <td><?= $i + 1 ?></td>
