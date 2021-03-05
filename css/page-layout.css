@@ -86,7 +86,6 @@
   position: absolute;
   width: 100%;
   height: max-content;
-  background: red;
   top: calc(50% + 170px);
   left: 0;
 }
