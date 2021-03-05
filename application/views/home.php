@@ -153,28 +153,27 @@
   <div class="box">
 
     <!-- event -->
+    <?php if(count($event) > 0) : ?>
     <div class="event">
       <div class="part-title">
         <div class="part-title-value">PENGUMUMAN</div>
         <div class="part-title-border"></div>
       </div>
       <div class="event-box">
+        <?php foreach($event as $item) : ?>
         <div class="event-item">
-          <div class="event-item-title">Lorem Ipsum Dolor</div>
-          <div class="event-item-value">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui animi a laborum dolorum provident iure totam placeat excepturi</div>
+          <div class="event-item-title"><?= $item->title ?></div>
+          <div class="event-item-value"><?= $item->text ?></div>
           <div class="event-item-date">22 November 2020</div>
         </div>
-        <div class="event-item">
-          <div class="event-item-title">Lorem Ipsum Dolor</div>
-          <div class="event-item-value">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui animi a laborum dolorum provident iure totam placeat excepturi</div>
-          <div class="event-item-date">22 November 2020</div>
-        </div>
+        <?php endforeach; ?>
       </div>
       <div class="event-more">
         <span>Pengumuman Lainnya</span>
         <i class="material-icons">keyboard_arrow_right</i>
       </div>
     </div>
+    <?php endif; ?>
 
     <!-- about -->
     <div class="about">
