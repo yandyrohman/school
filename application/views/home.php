@@ -168,10 +168,6 @@
         </div>
         <?php endforeach; ?>
       </div>
-      <div class="event-more">
-        <span>Pengumuman Lainnya</span>
-        <i class="material-icons">keyboard_arrow_right</i>
-      </div>
     </div>
     <?php endif; ?>
 
