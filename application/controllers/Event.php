@@ -85,4 +85,8 @@ class Event extends CI_Controller {
 		return redirect(base_url('event/index'));
 	}
 
+	public function show($id) {
+		$this->load->view('pages/layout');
+	}
+
 }
