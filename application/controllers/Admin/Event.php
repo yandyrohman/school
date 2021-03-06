@@ -44,7 +44,7 @@ class Event extends CI_Controller {
 		// back
 		$msg = '<div class="alert alert-success">Berhasil tambah data</div>';
 		$this->session->set_flashdata('msg', $msg);
-		return redirect(base_url('event/index'));
+		return redirect(base_url('admin/event/index'));
 	}
 
 	public function edit($id) {
@@ -59,7 +59,7 @@ class Event extends CI_Controller {
 		} else {
 			$msg = '<div class="alert alert-danger">Data tidak ditemukan</div>';
 			$this->session->set_flashdata('msg', $msg);
-			return redirect(base_url('event/index'));
+			return redirect(base_url('admin/event/index'));
 		}
 	}
 
@@ -72,7 +72,7 @@ class Event extends CI_Controller {
 		// back
 		$msg = '<div class="alert alert-success">Berhasil ubah data</div>';
 		$this->session->set_flashdata('msg', $msg);
-		return redirect(base_url('event/index'));
+		return redirect(base_url('admin/event/index'));
 	}
 
 	public function delete($id) {
@@ -82,7 +82,7 @@ class Event extends CI_Controller {
 		// back
 		$msg = '<div class="alert alert-success">Berhasil hapus data</div>';
 		$this->session->set_flashdata('msg', $msg);
-		return redirect(base_url('event/index'));
+		return redirect(base_url('admin/event/index'));
 	}
 
 }

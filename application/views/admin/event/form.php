@@ -5,9 +5,9 @@
     </div>
     <div class="card-body">
       <?php if(isset($data->id)) : ?>
-        <form action="<?= base_url('event/update/'.$data->id) ?>" method="POST">
+        <form action="<?= base_url('admin/event/update/'.$data->id) ?>" method="POST">
       <?php else : ?>
-        <form action="<?= base_url('event/store') ?>" method="POST">
+        <form action="<?= base_url('admin/event/store') ?>" method="POST">
       <?php endif; ?>
 
         <div class="form-group">

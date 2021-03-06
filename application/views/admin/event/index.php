@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       <b>Pengumuman</b>
-      <a class="btn btn-primary btn-sm" href="<?= base_url('event/create') ?>" style="justify-self: end">
+      <a class="btn btn-primary btn-sm" href="<?= base_url('admin/event/create') ?>" style="justify-self: end">
         <i class="material-icons">add</i>
         <span>TAMBAH</span>
       </a>
@@ -40,7 +40,7 @@
               <?php endif; ?>
             </td>
             <td class="flex">
-              <a class="btn btn-sm btn-primary" href="<?= base_url('/event/edit/'.$data->id) ?>">
+              <a class="btn btn-sm btn-primary" href="<?= base_url('admin/event/edit/'.$data->id) ?>">
                 <i class="material-icons">create</i>
               </a>
               <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">

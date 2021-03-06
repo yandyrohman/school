@@ -363,6 +363,12 @@
       padding: 10px 20px;
       box-sizing: border-box;
       background: #f1f1f1;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .event-item:hover {
+      background: #ddd;
     }
 
       .event-item-title {

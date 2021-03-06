@@ -1,6 +1,8 @@
 <div class="nav">
   <div class="nav-logo">
-    <img src="<?= base_url('img/examples/logo.png') ?>">
+    <a href="<?= base_url('/') ?>">
+      <img src="<?= base_url('img/examples/logo.png') ?>">
+    </a>
   </div>
   <div class="nav-menus">
     <div class="nav-menu" href="#">

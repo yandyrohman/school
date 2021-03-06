@@ -56,11 +56,11 @@
       </div>
       <div class="event-box">
         <?php foreach($event as $item) : ?>
-        <div class="event-item">
+        <a href="<?= base_url('event/show/'.$item->id) ?>" class="event-item">
           <div class="event-item-title"><?= $item->title ?></div>
           <div class="event-item-value"><?= $item->text ?></div>
           <div class="event-item-date">22 November 2020</div>
-        </div>
+        </a>
         <?php endforeach; ?>
       </div>
     </div>

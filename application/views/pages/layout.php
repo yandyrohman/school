@@ -23,7 +23,7 @@
   
   <div class="page-layout-bg">
     <img src="<?= base_url('img/banner.jpg') ?>">
-    <div class="page-layout-title">JUDUL HALAMAN</div>
+    <div class="page-layout-title"><?= strtoupper($title) ?></div>
   </div>
 
   <div class="page-layout-nav">
@@ -33,14 +33,16 @@
   </div>
 
   <div class="page-layout-second-title">
-    <div class="page-layout-second-title-text">Judul Halaman</div>
+    <div class="page-layout-second-title-text"><?= $title ?></div>
     <div class="page-layout-second-title-border"></div>
   </div>
 
   <div class="page-layout-box">
     
     <div class="page-layout-box-container">
-      body
+      
+      <?php $this->load->view('pages/'.$page) ?>
+
     </div>
 
     <?php $this->load->view('footer') ?>
