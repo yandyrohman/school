@@ -4,13 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Welcome extends CI_Controller {
 
 	public function index() {
-		$event = $this->dataEvent();
+		$events = $this->dataEvent();
+		$faces = $this->dataFace();
+		// echo "<pre>";
+		// return print_r($face);
 		$this->load->view('home', [
-			'event' => $event
+			'events' => $events,
+			'faces' => $faces
 		]);
 	}
 
-	public function dataEvent() {
+	private function dataEvent() {
 		$this->db->where('is_active', 1);
 		
 		# ambil 4 data pertama
@@ -25,5 +29,10 @@ class Welcome extends CI_Controller {
 
 		return $output;
 	}
+
+	private function dataFace() {
+		$data = $this->db->get('face');
+		return $data->result(); 
+	} 
 
 }

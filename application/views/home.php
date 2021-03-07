@@ -27,38 +27,36 @@
     <div class="face-next">
       <i class="material-icons">keyboard_arrow_right</i>
     </div>
-    <img id="face-img" data-img="1" src="<?= base_url('img/face/1.jpg') ?>">
-    <div class="face-wrap">
-      <div class="face-title">Lorem Ipsum Dolor Sit Amet</div>
-      <div class="face-subtitle">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat ipsam dolor, 
-        alias, recusandae necessitatibus, magni veniam nostrum consectetur totam obcaecati 
-        optio ducimus qui officiis animi quibusdam nesciunt eos sed. Quia?
+
+    <?php foreach($faces as $i => $face) : ?>
+      <img id="face-img" data-face-img="<?= $i + 1 ?>" src="<?= base_url('img/face/'.$face->photo) ?>">
+      <div class="face-wrap" data-face-wrap="<?= $i + 1 ?>">
+        <div class="face-title"><?= $face->title ?></div>
+        <div class="face-subtitle"><?= $face->text ?></div>
       </div>
-    </div>
+    <?php endforeach; ?>
+    
     <div class="face-indicator">
-      <span data-bullet="1" class="fi-active"></span>
-      <span data-bullet="2"></span>
-      <span data-bullet="3"></span>
-      <span data-bullet="4"></span>
-      <span data-bullet="5"></span>
+      <?php foreach($faces as $i => $face) : ?>
+        <span data-bullet="<?= $i + 1?>"></span>
+      <?php endforeach; ?>
     </div>
   </div>
 
   <div class="box">
 
     <!-- event -->
-    <?php if(count($event) > 0) : ?>
+    <?php if(count($events) > 0) : ?>
     <div class="event">
       <div class="part-title">
         <div class="part-title-value">PENGUMUMAN</div>
         <div class="part-title-border"></div>
       </div>
       <div class="event-box">
-        <?php foreach($event as $item) : ?>
-        <a href="<?= base_url('event/show/'.$item->id) ?>" class="event-item">
-          <div class="event-item-title"><?= $item->title ?></div>
-          <div class="event-item-value"><?= $item->view ?></div>
+        <?php foreach($events as $event) : ?>
+        <a href="<?= base_url('event/show/'.$event->id) ?>" class="event-item">
+          <div class="event-item-title"><?= $event->title ?></div>
+          <div class="event-item-value"><?= $event->view ?></div>
           <div class="event-item-date">22 November 2020</div>
         </a>
         <?php endforeach; ?>
@@ -494,6 +492,12 @@
 <script>
 
   // carousel face
+  let face = 1;
+  let faceMax = <?= count($faces) ?>;
+  $(`img[data-face-img="${face}"]`).css('display', 'block');
+  $(`div[data-face-wrap="${face}"]`).css('display', 'flex');
+  $(`span[data-bullet="${face}"]`).attr('class', 'fi-active');
+  
   $('.face-next').on('click', function() {
     simpleCarousel('+');
   });
@@ -501,28 +505,27 @@
     simpleCarousel('-');
   });
   function simpleCarousel(to) {
-    let imgNow = parseInt($('#face-img').data('img'));
-    imgNow = to == '+' ? (imgNow + 1) : (imgNow - 1);
-    $('.face-indicator span').attr('class', '');
-    if (imgNow <= 5 && imgNow > 0) {
-      $('#face-img').hide();
-      $('#face-img').attr('src', '<?= base_url('img/face/') ?>' + imgNow + '.jpg');
-      $('#face-img').data('img', imgNow);
-      $('#face-img').fadeIn();
-      $(`.face-indicator span[data-bullet="${imgNow}"]`).attr('class', 'fi-active');
-    } else if (imgNow == 0) {
-      $('#face-img').hide();
-      $('#face-img').attr('src', '<?= base_url('img/face/') ?>' + 5 + '.jpg');
-      $('#face-img').data('img', 5);
-      $('#face-img').fadeIn();
-      $(`.face-indicator span[data-bullet="${5}"]`).attr('class', 'fi-active');
-    } else if (imgNow == 6) {
-      $('#face-img').hide();
-      $('#face-img').attr('src', '<?= base_url('img/face/') ?>' + 1 + '.jpg');
-      $('#face-img').data('img', 1);
-      $('#face-img').fadeIn();
-      $(`.face-indicator span[data-bullet="${1}"]`).attr('class', 'fi-active');
+    $(`img[data-face-img="${face}"]`).fadeOut();
+    $(`div[data-face-wrap="${face}"]`).css('display', 'none');
+    $(`span[data-bullet="${face}"]`).attr('class', '');
+
+    if (to == '+') {
+      if (face == faceMax) {
+        face = 1;
+      } else {
+        face += 1;
+      }
+    } else if (to == '-') {
+      if (face == 1) {
+        face = faceMax;
+      } else {
+        face -= 1;
+      }
     }
+
+    $(`img[data-face-img="${face}"]`).fadeIn();
+    $(`div[data-face-wrap="${face}"]`).fadeIn().css('display', 'flex');
+    $(`span[data-bullet="${face}"]`).attr('class', 'fi-active');
   }
 
 </script>
