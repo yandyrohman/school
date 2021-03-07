@@ -13,9 +13,17 @@ class Welcome extends CI_Controller {
 	public function dataEvent() {
 		$this->db->where('is_active', 1);
 		
-		// ambil 4 data pertama
+		# ambil 4 data pertama
 		$data = $this->db->get('event', 4);
-		return $data->result(); 
+		$output = $data->result(); 
+		
+		# viewable string
+		foreach($output as $item) {
+			$item->view = strip_tags($item->text);
+			$item->view = substr($item->view, 0, 15).' ...';
+		}
+
+		return $output;
 	}
 
 }
