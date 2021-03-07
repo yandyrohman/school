@@ -3,7 +3,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('event') ?>"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/event') ?>"
                         aria-expanded="false">
                         <i class="material-icons">book_online</i>
                         <span class="hide-menu">Pengumuman</span>
@@ -18,8 +18,11 @@
                     </a>
                     <ul class="sidebar-item-sub">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                                aria-expanded="false">
+                            <a 
+                                class="sidebar-link waves-effect waves-dark sidebar-link" 
+                                href="<?= base_url('admin/face') ?>"
+                                aria-expanded="false"
+                            >
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Tampilan Depan</span>
                             </a>

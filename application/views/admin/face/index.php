@@ -23,49 +23,30 @@
         </thead>
         <tbody>
 
+          <?php if(count($datas) == 0) : ?>
+            <tr>
+              <td colspan="4" class="text-center">- data kosong -</td>
+            </tr>
+          <?php endif; ?>
           
-          
-          <tr>
-            <td>1</td>
-            <td>
-              <img class="img" src="<?= base_url('img/face/1.jpg') ?>">
-            </td>
-            <td>Judul</td>
-            <td>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-              Aliquid debitis temporibus, ad, exercitationem excepturi placeat ab velit sint nobis reprehenderit
-              quibusdam maiores accusantium sit asperiores eveniet quod ullam? Porro, delectus!
-            </td>
-            <td class="flex">
-              <a class="btn btn-sm btn-primary" href="<?= base_url('admin/event/edit/'.'1') ?>">
-                <i class="material-icons">create</i>
-              </a>
-              <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= '1' ?>)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-
-          <tr>
-            <td>1</td>
-            <td>
-              <img class="img" src="<?= base_url('img/face/1.jpg') ?>">
-            </td>
-            <td>Judul</td>
-            <td>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-              Aliquid debitis temporibus, ad, exercitationem excepturi placeat ab velit sint nobis reprehenderit
-              quibusdam maiores accusantium sit asperiores eveniet quod ullam? Porro, delectus!
-            </td>
-            <td class="flex">
-              <a class="btn btn-sm btn-primary" href="<?= base_url('admin/event/edit/'.'1') ?>">
-                <i class="material-icons">create</i>
-              </a>
-              <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= '1' ?>)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
+          <?php foreach($datas as $i => $data) : ?>
+            <tr>
+              <td><?= $i + 1 ?></td>
+              <td>
+                <img class="img" src="<?= base_url('img/face/'.$data->photo) ?>">
+              </td>
+              <td><?= $data->title ?></td>
+              <td><?= $data->text ?></td>
+              <td class="flex">
+                <a class="btn btn-sm btn-primary" href="<?= base_url('admin/face/edit/'.$data->id) ?>">
+                  <i class="material-icons">create</i>
+                </a>
+                <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
           
         </tbody>
       </table>
@@ -76,7 +57,7 @@
 <script>
   function deleteData(id) {
     if(confirm('Hapus data ini ?')) {
-      window.location = `<?= base_url() ?>face/delete/${id}`
+      window.location = `<?= base_url() ?>admin/face/delete/${id}`
     }
   }
 </script>

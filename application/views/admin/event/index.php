@@ -23,31 +23,31 @@
         <tbody>
 
           <?php if(count($datas) == 0) : ?>
-          <tr>
-            <td colspan="4" class="text-center">- data kosong -</td>
-          </tr>
+            <tr>
+              <td colspan="4" class="text-center">- data kosong -</td>
+            </tr>
           <?php endif; ?>
           
           <?php foreach($datas as $i => $data) : ?>
-          <tr>
-            <td><?= $i + 1 ?></td>
-            <td><?= $data->title ?></td>
-            <td>
-              <?php if($data->is_active == 1) : ?>
-                <span class="label label-success label-rounded">AKTIF</span>
-              <?php else : ?>
-                <span class="label label-danger label-rounded">NON AKTIF</span>
-              <?php endif; ?>
-            </td>
-            <td class="flex">
-              <a class="btn btn-sm btn-primary" href="<?= base_url('admin/event/edit/'.$data->id) ?>">
-                <i class="material-icons">create</i>
-              </a>
-              <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
+            <tr>
+              <td><?= $i + 1 ?></td>
+              <td><?= $data->title ?></td>
+              <td>
+                <?php if($data->is_active == 1) : ?>
+                  <span class="label label-success label-rounded">AKTIF</span>
+                <?php else : ?>
+                  <span class="label label-danger label-rounded">NON AKTIF</span>
+                <?php endif; ?>
+              </td>
+              <td class="flex">
+                <a class="btn btn-sm btn-primary" href="<?= base_url('admin/event/edit/'.$data->id) ?>">
+                  <i class="material-icons">create</i>
+                </a>
+                <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
+                  <i class="material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
           <?php endforeach; ?>
         </tbody>
       </table>

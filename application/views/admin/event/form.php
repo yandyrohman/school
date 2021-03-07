@@ -56,7 +56,7 @@
 
         <div class="d-flex">
           <button class="btn btn-primary">UMUMKAN</button>
-          <a class="btn btn-secondary ml-2" href="<?= base_url('event') ?>">BATAL</a>
+          <a class="btn btn-secondary ml-2" href="<?= base_url('admin/event') ?>">BATAL</a>
         </div>
       
       </form>
