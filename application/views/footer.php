@@ -1,6 +1,6 @@
 <footer>
   <div class="footer-col">
-    <img class="footer-logo" src="<?= base_url('img/examples/logo2.png') ?>">
+    <div class="footer-title-prime">SMK NURUL ISLAM CIANJUR</div>
     <div class="footer-text">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi consequuntur voluptates repellat blanditiis porro quod eveniet autem.
     </div>
