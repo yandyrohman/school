@@ -38,17 +38,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                                aria-expanded="false">
+                            <a 
+                                class="sidebar-link waves-effect waves-dark sidebar-link" 
+                                href="<?= base_url('admin/vm') ?>"
+                                aria-expanded="false"
+                            >
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Visi Misi</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
-                                <span class="hide-menu">Kontak</span>
                             </a>
                         </li>
                     </ul>
@@ -73,13 +69,6 @@
                                 aria-expanded="false">
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Siswa</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
-                                <span class="hide-menu">PPDB</span>
                             </a>
                         </li>
                     </ul>

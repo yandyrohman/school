@@ -63,9 +63,6 @@
       </div>
     </div>
     <div class="nav-menu" href="#">
-      <span class="nav-caption" data-sub="5">PPDB</span>
-    </div>
-    <div class="nav-menu" href="#">
       <span class="nav-caption" data-sub="6">Login</span>
     </div>
     <div class="nav-toggle">
