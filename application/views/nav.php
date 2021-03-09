@@ -1,7 +1,7 @@
 <div class="nav">
   <div class="nav-logo">
     <a href="<?= base_url('/') ?>">
-      <img src="<?= base_url('img/examples/logo.png') ?>">
+      <img src="<?= base_url('img/logo.png') ?>">
     </a>
   </div>
   <div class="nav-menus">

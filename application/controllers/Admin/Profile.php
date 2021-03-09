@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
 
+	function __construct(){
+		parent::__construct();
+		$this->load->helper(['form', 'url']);
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'nama' => $data['nama'],
@@ -44,11 +49,22 @@ class Profile extends CI_Controller {
 		$dataStore = $this->preData($data, $id);
 		$this->db->where('id', 1);
 		$this->db->update('profile', $dataStore);
+		$this->upload('logo');
 
 		// back
 		$msg = '<div class="alert alert-success">Berhasil ubah profile</div>';
 		$this->session->set_flashdata('msg', $msg);
 		return redirect(base_url('admin/profile/index'));
+	}
+
+	private function upload($name) {
+		unlink('./img/logo.png');
+		$this->load->library('upload', [
+			'upload_path' => './img/',
+			'allowed_types' => 'gif|jpg|png',
+			'file_name' => 'logo.png'
+		]);
+		$this->upload->do_upload($name);
 	}
 
 }
