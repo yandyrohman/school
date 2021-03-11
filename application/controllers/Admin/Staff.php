@@ -41,12 +41,27 @@ class Staff extends CI_Controller {
 	}
 
 	public function index() {
-		$datas = $this->db->get('staff')->result();
+    if (isset($_GET['q'])) {
+      $datas = $this->db->get_where('staff', [
+        'name like' => '%'.$_GET['q'].'%'
+      ])->result();
+    } else {
+      if (isset($_GET['page'])) {
+        $page = $_GET['page'];
+      } else {
+        $page = 1;
+      }
+      $limit = 5;
+      $offset = ($page - 1) * $limit;
+      $datas = $this->db->get('staff', $limit, $offset)->result();
+    }
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [
 			'view' => 'admin/staff/index',
 			'datas' => $datas,
-			'msg' => $msg
+			'msg' => $msg,
+      'page' => $page ?? false,
+      'q' => $_GET['q'] ?? ''
 		]);
 	}
 

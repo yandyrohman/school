@@ -48,7 +48,7 @@
           <label>Jabatan</label>
           <select name="position" required class="form-control">
             <option value="" hidden>- Pilih Jabatan -</option>
-            <option value="a" <?= ($data->position ?? '') == 'a' ? 'selected' : '' ?>>Kepala Sekolah</option>
+            <option value="a" <?= ($data->position ?? '') == 'a' ? 'selected' : '' ?> selected>Kepala Sekolah</option>
             <option value="b" <?= ($data->position ?? '') == 'b' ? 'selected' : '' ?>>Wakil Kepala Sekolah</option>
             <option value="c" <?= ($data->position ?? '') == 'c' ? 'selected' : '' ?>>Kepala Jurusan</option>
             <option value="d" <?= ($data->position ?? '') == 'd' ? 'selected' : '' ?>>Guru</option>
@@ -61,7 +61,7 @@
           <label>Jenis Kelamin</label>
           <select name="gender" required class="form-control">
             <option value="" hidden>- Pilih Jenis Kelamin -</option>
-            <option value="L" <?= ($data->gender ?? '') == 'L' ? 'selected' : '' ?>>Laki-laki</option>
+            <option value="L" <?= ($data->gender ?? '') == 'L' ? 'selected' : '' ?> selected>Laki-laki</option>
             <option value="P" <?= ($data->gender ?? '') == 'P' ? 'selected' : '' ?>>Perempuan</option>
           </select>
         </div>
@@ -73,7 +73,7 @@
             name="birth_date" 
             required 
             class="form-control"
-            value="<?= $data->birth_date ?? '' ?>"
+            value="2000-12-12"
           >
         </div>
           
@@ -93,7 +93,7 @@
           <label>Agama</label>
           <select name="religion" class="form-control" required>
             <option value="" hidden>- Pilih Agama -</option>
-            <option value="islam" <?= ($data->religion ?? '') == 'islam' ? 'selected' : '' ?>>Islam</option>
+            <option value="islam" <?= ($data->religion ?? '') == 'islam' ? 'selected' : '' ?> selected>Islam</option>
             <option value="protestan" <?= ($data->religion ?? '') == 'protestan' ? 'selected' : '' ?>>Protestan</option>
             <option value="katolik" <?= ($data->religion ?? '') == 'katolik' ? 'selected' : '' ?>>Katolik</option>
             <option value="hindu" <?= ($data->religion ?? '') == 'hindu' ? 'selected' : '' ?>>Hindu</option>
