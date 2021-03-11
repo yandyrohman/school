@@ -58,8 +58,11 @@
                     </a>
                     <ul class="sidebar-item-sub">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                                aria-expanded="false">
+                            <a 
+                                class="sidebar-link waves-effect waves-dark sidebar-link" 
+                                href="<?= base_url('admin/staff') ?>"
+                                aria-expanded="false"
+                            >
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Staff & Guru</span>
                             </a>
@@ -86,6 +89,13 @@
                                 aria-expanded="false">
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Jurusan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
+                                aria-expanded="false">
+                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
+                                <span class="hide-menu">Kelas</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

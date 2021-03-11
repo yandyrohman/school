@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="card">
     <div class="card-header">
-      <b>Tampilan Depan</b>
-      <a class="btn btn-primary btn-sm" href="<?= base_url('admin/face/create') ?>" style="justify-self: end">
+      <b>Staff & Guru</b>
+      <a class="btn btn-primary btn-sm" href="<?= base_url('admin/staff/create') ?>" style="justify-self: end">
         <i class="material-icons">add</i>
         <span>TAMBAH</span>
       </a>
@@ -15,17 +15,17 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Gambar</th>
-            <th>Judul</th>
-            <th>Isi</th>
+            <th>Foto</th>
+            <th>Nama</th>
+            <th>Jabatan</th>
             <th>Option</th>
           </tr>
         </thead>
         <tbody>
-
+          
           <?php if(count($datas) == 0) : ?>
             <tr>
-              <td colspan="4" class="text-center">- data kosong -</td>
+              <td colspan="5" class="text-center">- data kosong -</td>
             </tr>
           <?php endif; ?>
           
@@ -33,12 +33,26 @@
             <tr>
               <td><?= $i + 1 ?></td>
               <td>
-                <img class="img" src="<?= base_url('img/face/'.$data->photo) ?>">
+                <img class="img" src="<?= base_url('img/staff/'.$data->photo) ?>">
               </td>
-              <td><?= $data->title ?></td>
-              <td><?= $data->text ?></td>
+              <td><?= $data->name ?></td>
+              <td>
+                <?php
+                  switch($data->position) :
+                    case 'a' : echo 'Kepala Sekolah'; break;
+                    case 'b' : echo 'Wakil Kepala Sekolah'; break;
+                    case 'c' : echo 'Kepala Jurusan'; break;
+                    case 'd' : echo 'Guru'; break;
+                    case 'e' : echo 'Staff TU'; break;
+                    case 'f' : echo 'Satpam'; break;
+                  endswitch;                   
+                ?>
+              </td>
               <td class="flex">
-                <a class="btn btn-sm btn-primary" href="<?= base_url('admin/face/edit/'.$data->id) ?>">
+                <a class="btn btn-sm btn-success" href="<?= base_url('admin/staff/show/'.$data->id) ?>">
+                  <i class="material-icons">visibility</i>
+                </a>
+                <a class="btn btn-sm btn-primary ml-1" href="<?= base_url('admin/staff/edit/'.$data->id) ?>">
                   <i class="material-icons">create</i>
                 </a>
                 <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
@@ -47,7 +61,7 @@
               </td>
             </tr>
           <?php endforeach; ?>
-          
+
         </tbody>
       </table>
     </div>
@@ -57,24 +71,12 @@
 <script>
   function deleteData(id) {
     if(confirm('Hapus data ini ?')) {
-      window.location = `<?= base_url() ?>admin/face/delete/${id}`
+      window.location = `<?= base_url() ?>admin/staff/delete/${id}`
     }
   }
 </script>
 
 <style>
-  .notif-green {
-    background:  #4caf50;
-    color: #fff;
-    border-radius: 5px;
-  }
-
-  .notif-red {
-    background:  #f44336;
-    color: #fff;
-    border-radius: 5px;
-  }
-
   .card-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -99,7 +101,7 @@
   }
 
   .img {
-    width: 100px;
+    width: 70px;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
   }
 
