@@ -1,0 +1,6 @@
+Petunjuk penggunaan aplikasi "school"
+
+- pertama tambah data jurusan (jika ada)
+- tambah data kelas
+- tambah data siswa
+- dst ..

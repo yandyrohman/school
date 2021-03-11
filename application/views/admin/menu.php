@@ -100,7 +100,7 @@
                         <li class="sidebar-item">
                             <a 
                                 class="sidebar-link waves-effect waves-dark sidebar-link" 
-                                href="<?= base_url('admin/class') ?>"
+                                href="<?= base_url('admin/classs') ?>"
                                 aria-expanded="false"
                             >
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>

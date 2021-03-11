@@ -28,7 +28,7 @@
 
         <div class="d-flex">
           <button class="btn btn-primary">SUBMIT</button>
-          <a class="btn btn-secondary ml-2" href="<?= base_url('admin/face') ?>">BATAL</a>
+          <a class="btn btn-secondary ml-2" href="<?= base_url('admin/major') ?>">BATAL</a>
         </div>
       
       </form>
