@@ -1,13 +1,13 @@
 <div class="container-fluid">
   <div class="card">
     <div class="card-header">
-      <b>Form Staff</b>
+      <b>Form Siswa</b>
     </div>
     <div class="card-body">
       <?php if(isset($data->id)) : ?>
-        <form action="<?= base_url('admin/staff/update/'.$data->id) ?>" method="POST" enctype="multipart/form-data">
+        <form action="<?= base_url('admin/student/update/'.$data->id) ?>" method="POST" enctype="multipart/form-data">
       <?php else : ?>
-        <form action="<?= base_url('admin/staff/store') ?>" method="POST" enctype="multipart/form-data">
+        <form action="<?= base_url('admin/student/store') ?>" method="POST" enctype="multipart/form-data">
       <?php endif; ?>
 
         <div class="form-group">
@@ -21,14 +21,26 @@
         </div>
 
         <div class="form-group">
-          <label>NIP</label>
+          <label>NIS</label>
           <input 
-            name="teacher_number" 
+            name="student_number" 
             class="form-control" 
             type="text" 
-            placeholder="Masukan NIP" 
+            placeholder="Masukan NIS" 
             required
-            value="<?= $data->teacher_number ?? '' ?>"
+            value="<?= $data->student_number ?? '' ?>"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>NISN</label>
+          <input 
+            name="national_student_number" 
+            class="form-control" 
+            type="text" 
+            placeholder="Masukan NISN" 
+            required
+            value="<?= $data->national_student_number ?? '' ?>"
           >
         </div>
 
@@ -45,15 +57,14 @@
         </div>
 
         <div class="form-group">
-          <label>Jabatan</label>
-          <select name="position" required class="form-control">
-            <option value="" hidden>- Pilih Jabatan -</option>
-            <option value="a" <?= ($data->position ?? '') == 'a' ? 'selected' : '' ?> selected>Kepala Sekolah</option>
-            <option value="b" <?= ($data->position ?? '') == 'b' ? 'selected' : '' ?>>Wakil Kepala Sekolah</option>
-            <option value="c" <?= ($data->position ?? '') == 'c' ? 'selected' : '' ?>>Kepala Jurusan</option>
-            <option value="d" <?= ($data->position ?? '') == 'd' ? 'selected' : '' ?>>Guru</option>
-            <option value="e" <?= ($data->position ?? '') == 'e' ? 'selected' : '' ?>>Staff TU</option>
-            <option value="f" <?= ($data->position ?? '') == 'f' ? 'selected' : '' ?>>Satpam</option>
+          <label>Kelas</label>
+          <select name="class_id" required class="form-control">
+            <option value="" hidden selected>- Pilih Kelas -</option>
+            <?php foreach($classes as $class) : ?>
+              <option value="<?= $class->id ?>" <?= ($data->class_id ?? '') == $class->id ? 'selected' : '' ?>>
+                <?= $class->name ?>
+              </option>
+            <?php endforeach; ?>
           </select>
         </div>
 
@@ -64,6 +75,30 @@
             <option value="L" <?= ($data->gender ?? '') == 'L' ? 'selected' : '' ?> selected>Laki-laki</option>
             <option value="P" <?= ($data->gender ?? '') == 'P' ? 'selected' : '' ?>>Perempuan</option>
           </select>
+        </div>
+
+        <div class="form-group">
+          <label>Nama Ayah</label>
+          <input 
+            name="dad_name" 
+            class="form-control" 
+            type="text" 
+            placeholder="Masukan Nama Ayah" 
+            required
+            value="<?= $data->dad_name ?? '' ?>"
+          >
+        </div>
+
+        <div class="form-group">
+          <label>Nama Ibu</label>
+          <input 
+            name="mom_name" 
+            class="form-control" 
+            type="text" 
+            placeholder="Masukan Nama Ibu" 
+            required
+            value="<?= $data->mom_name ?? '' ?>"
+          >
         </div>
 
         <div class="form-group">

@@ -1,19 +1,25 @@
 <div class="container-fluid">
   <div class="card" style="width: 600px">
     <div class="card-header">
-      <b>Detail Staff</b>
+      <b>Detail Siswa</b>
     </div>
     <div class="card-body">
 
         <div class="form-group">
           <label>Foto</label><br/>
-          <img src="<?= base_url('img/staff/'.$data->photo) ?>" style="width: 100px">
+          <img src="<?= base_url('img/student/'.$data->photo) ?>" style="width: 100px">
         </div>
         <hr/>
 
         <div class="form-group">
-          <label>NIP</label><br/>
-          <b><?= $data->teacher_number ?></b>
+          <label>NIS</label><br/>
+          <b><?= $data->student_number ?></b>
+        </div>
+        <hr/>
+
+        <div class="form-group">
+          <label>NISN</label><br/>
+          <b><?= $data->national_student_number ?></b>
         </div>
         <hr/>
 
@@ -24,19 +30,8 @@
         <hr/>
 
         <div class="form-group">
-          <label>Jabatan</label><br/>
-          <b>
-            <?php
-              switch($data->position) :
-                case 'a' : echo 'Kepala Sekolah'; break;
-                case 'b' : echo 'Wakil Kepala Sekolah'; break;
-                case 'c' : echo 'Kepala Jurusan'; break;
-                case 'd' : echo 'Guru'; break;
-                case 'e' : echo 'Staff TU'; break;
-                case 'f' : echo 'Satpam'; break;
-              endswitch;                   
-            ?>
-          </b>
+          <label>Kelas</label><br/>
+          <b><?= $data->class_name ?></b>
         </div>
         <hr/>
 
@@ -50,6 +45,18 @@
               endswitch;                   
             ?>
           </b>
+        </div>
+        <hr/>
+        
+        <div class="form-group">
+          <label>Nama Ayah</label><br/>
+          <b><?= $data->dad_name ?></b>
+        </div>
+        <hr/>
+
+        <div class="form-group">
+          <label>Nama Ibu</label><br/>
+          <b><?= $data->mom_name ?></b>
         </div>
         <hr/>
 
@@ -114,7 +121,7 @@
         <hr/>
 
         <div class="d-flex">
-          <a class="btn btn-primary mt-2" href="<?= base_url('admin/staff') ?>">KEMBALI</a>
+          <a class="btn btn-primary mt-2" href="<?= base_url('admin/student') ?>">KEMBALI</a>
         </div>
       
       </form>

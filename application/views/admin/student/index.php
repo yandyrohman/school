@@ -55,7 +55,7 @@
                 <img class="img" src="<?= base_url('img/student/'.$data->photo) ?>">
               </td>
               <td><?= $data->name ?></td>
-              <td><?= $data->kelas ?></td>
+              <td><?= $data->class_name ?></td>
               <td class="flex">
                 <a class="btn btn-sm btn-success" href="<?= base_url('admin/student/show/'.$data->id) ?>">
                   <i class="material-icons">visibility</i>
