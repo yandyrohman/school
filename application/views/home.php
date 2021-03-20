@@ -411,7 +411,7 @@
       </div>
       <div class="facilities-box">
         <div class="facilities-item">
-          <img class="facilities-img" src="<?= base_url('img/facilities/1.jpg') ?>">
+          <img class="facilities-img" src="<?= base_url('img/facility/1.jpg') ?>">
           <div class="facilities-info">
             <div class="facilities-title">Lab Komputer</div>
             <div class="facilities-subtitle">
@@ -420,7 +420,7 @@
           </div>
         </div>
         <div class="facilities-item">
-          <img class="facilities-img" src="<?= base_url('img/facilities/2.jpg') ?>">
+          <img class="facilities-img" src="<?= base_url('img/facility/2.jpg') ?>">
           <div class="facilities-info">
             <div class="facilities-title">Kantin Sekolah</div>
             <div class="facilities-subtitle">
