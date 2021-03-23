@@ -178,8 +178,11 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                                aria-expanded="false">
+                            <a 
+                                class="sidebar-link waves-effect waves-dark sidebar-link" 
+                                href="<?= base_url('admin/achievment') ?>"
+                                aria-expanded="false"
+                            >
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Prestasi</span>
                             </a>

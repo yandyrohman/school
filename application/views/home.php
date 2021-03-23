@@ -209,56 +209,56 @@
       </div>
       <div class="achievement-box">
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/1.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/1.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">Sains Terapan Nasional 2020</div>
           </div>
         </div>
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/2.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/2.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">Coding Contest 2020</div>
           </div>
         </div>
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/3.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/3.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">Olimpiade Matermatika 2019</div>
           </div>
         </div>
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/4.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/4.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">Robotik Nasional 2020</div>
           </div>
         </div>
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/5.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/5.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">International Music for World 2018</div>
           </div>
         </div>
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/6.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/6.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">Teater Show Nasional 2018</div>
           </div>
         </div>
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/7.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/7.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">Accountant Fest 2018</div>
           </div>
         </div>
         <div class="achievement-item">
-          <img class="achievement-img" src="<?= base_url('img/achievement/8.jpg') ?>">
+          <img class="achievement-img" src="<?= base_url('img/achievment/8.jpg') ?>">
           <div class="achievement-info">
             <div class="achievement-title">Juara I</div>
             <div class="achievement-subtitle">Futsal Siswa Nasional 2018</div>
