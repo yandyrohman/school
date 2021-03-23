@@ -179,7 +179,7 @@
                         </li>
                         <li class="sidebar-item">
                             <a 
-                                class="sidebar-link waves-effect waves-dark sidebar-link" 
+                                class="<?= (isset($_SESSION['page']) ?? '') == 'achievment' ? 'active ' : '' ?>sidebar-link waves-effect waves-dark sidebar-link" 
                                 href="<?= base_url('admin/achievment') ?>"
                                 aria-expanded="false"
                             >
@@ -190,8 +190,11 @@
                     </ul>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html"
-                        aria-expanded="false">
+                    <a  
+                        class="sidebar-link waves-effect waves-dark sidebar-link" 
+                        href="<?= base_url('admin/users') ?>"
+                        aria-expanded="false"
+                    >
                         <i class="material-icons">people</i>
                         <span class="hide-menu">Kelola User</span>
                     </a>
@@ -212,6 +215,11 @@
 .sidebar-item-sub {
     display: none;
     background: #384350 !important;
+}
+
+.sidebar-item .active {
+    border-left: 2px solid #2962ff !important;
+    color: #fff !important;
 }
 </style>
 

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Achievment extends CI_Controller {
+class Users extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -10,11 +10,11 @@ class Achievment extends CI_Controller {
 
 	private function preData($data, $id = false) {
 		$dataStore = [
-			'title' => $data['title'],
-			'rank' => $data['rank'],
-			'year' => $data['year'],
-			'location' => $data['location'],
-			'story' => $data['story']
+			'name' => $data['name'],
+			'username' => $data['username'],
+			'password' => $data['password'],
+			'email' => $data['email'],
+			'role' => $data['role'],
 		];
 
 		if (!empty($_FILES['photo']['name'])) {
@@ -32,51 +32,71 @@ class Achievment extends CI_Controller {
 	}
 
 	public function index() {
-		$this->session->set_userdata(['page' => 'achievment']);
-
-		$datas = $this->db->get('achievment')->result();
+		if (isset($_GET['q'])) {
+			$datas = $this->db->get_where('users', [
+				'name like' => '%'.$_GET['q'].'%'
+			])->result();
+		} else {
+			if (isset($_GET['page'])) {
+				$page = $_GET['page'];
+			} else {
+				$page = 1;
+			}
+			$limit = 5;
+			$offset = ($page - 1) * $limit;
+			$datas = $this->db->get('users', $limit, $offset)->result();
+		}
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [
-			'view' => 'admin/achievment/index',
+			'view' => 'admin/users/index',
 			'datas' => $datas,
-			'msg' => $msg
+			'msg' => $msg,
+			'page' => $page ?? false,
+			'q' => $_GET['q'] ?? ''
 		]);
 	}
 
 	public function create() {
 		$this->load->view('admin/app', [
-			'view' => 'admin/achievment/form'
+			'view' => 'admin/users/form'
 		]);
 	}
 
 	public function store() {
 		$data = $this->input->post();
-		$dataStore = $this->preData($data);
-		$this->db->insert('achievment', $dataStore);
 
-		if (isset($dataStore['photo'])) {
-			$this->upload('photo', $dataStore['photo']);
+		// password validate
+		if ($data['password2'] != $data['password']) {
+			return redirect(base_url('admin/users/create?err_password=true'));
 		}
+
+		// username validate
+		if ($this->isUsernameExist($data['username'])) {
+			return redirect(base_url('admin/users/create?err_username=true'));
+		}
+
+		$dataStore = $this->preData($data);
+		$this->db->insert('users', $dataStore);
 
 		// back
 		$msg = '<div class="alert alert-success">Berhasil tambah data</div>';
 		$this->session->set_flashdata('msg', $msg);
-		return redirect(base_url('admin/achievment/index'));
+		return redirect(base_url('admin/users/index'));
 	}
 
 	public function edit($id) {
-		$data = $this->db->get_where('achievment', [
+		$data = $this->db->get_where('users', [
 			'id' => $id
 		])->row();
 		if ($data) {
 			$this->load->view('admin/app', [
-				'view' => 'admin/achievment/form',
+				'view' => 'admin/users/form',
 				'data' => $data
 			]);
 		} else {
 			$msg = '<div class="alert alert-danger">Data tidak ditemukan</div>';
 			$this->session->set_flashdata('msg', $msg);
-			return redirect(base_url('admin/achievment/index'));
+			return redirect(base_url('admin/users/index'));
 		}
 	}
 
@@ -84,56 +104,45 @@ class Achievment extends CI_Controller {
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
-		if (isset($dataStore['photo'])) {
-			$this->upload('photo', $dataStore['photo'], $id);
-		}
-
 		$this->db->where('id', $id);
-		$this->db->update('achievment', $dataStore);
+		$this->db->update('users', $dataStore);
 
 		// back
 		$msg = '<div class="alert alert-success">Berhasil ubah data</div>';
 		$this->session->set_flashdata('msg', $msg);
-		return redirect(base_url('admin/achievment/index'));
+		return redirect(base_url('admin/users/index'));
 	}
 
 	public function delete($id) {
-		$this->deleteFile($id);
-		
 		$this->db->where('id', $id);
-		$this->db->delete('achievment');
+		$this->db->delete('users');
 
 		// back
 		$msg = '<div class="alert alert-success">Berhasil hapus data</div>';
 		$this->session->set_flashdata('msg', $msg);
-		return redirect(base_url('admin/achievment/index'));
+		return redirect(base_url('admin/users/index'));
 	}
 
-	private function upload($name, $filename, $id = false) {
-		if ($id) {
-			$data = $this->getDataById($id);
-			unlink('./img/achievment/'.$data->photo);
-		}
-		
-		$this->load->library('upload', [
-			'upload_path' => './img/achievment/',
-			'allowed_types' => 'gif|jpg|png',
-			'file_name' => $filename
-		]);
-		$this->upload->do_upload($name);
-	}
-
-	private function deleteFile($id) {
+	public function show($id) {
 		$data = $this->getDataById($id);
-		$filename = $data->photo;
-		unlink('./img/achievment/'.$data->photo);
+		$this->load->view('admin/app', [
+			'view' => 'admin/users/show',
+			'data' => $data
+		]);
 	}
 
 	private function getDataById($id) {
-		$data = $this->db->get_where('achievment', [
+		$data = $this->db->get_where('users', [
 			'id' => $id
 		])->result(); 
 		return $data[0];
+	}
+
+	private function isUsernameExist($username) {
+		$data = $this->db->get_where('users', [
+			'username' => $username
+		])->result(); 
+		return count($data) > 0 ? true : false;
 	}
 
 }
