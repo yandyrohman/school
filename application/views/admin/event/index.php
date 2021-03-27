@@ -58,7 +58,7 @@
 <script>
   function deleteData(id) {
     if(confirm('Hapus data ini ?')) {
-      window.location = `<?= base_url() ?>event/delete/${id}`
+      window.location = `<?= base_url() ?>admin/event/delete/${id}`
     }
   }
 </script>
