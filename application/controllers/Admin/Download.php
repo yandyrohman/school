@@ -21,6 +21,8 @@ class Download extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'download']);
+
 		$datas = $this->db->get('download')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [

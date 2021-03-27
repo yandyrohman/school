@@ -41,35 +41,37 @@ class Staff extends CI_Controller {
 	}
 
 	public function index() {
-    if (isset($_GET['q'])) {
-      $datas = $this->db->get_where('staff', [
-        'name like' => '%'.$_GET['q'].'%'
-      ])->result();
-    } else {
-      if (isset($_GET['page'])) {
-        $page = $_GET['page'];
-      } else {
-        $page = 1;
-      }
-      $limit = 5;
-      $offset = ($page - 1) * $limit;
-      $datas = $this->db->get('staff', $limit, $offset)->result();
-    }
+		$this->session->set_userdata(['page' => 'staff']);
+
+		if (isset($_GET['q'])) {
+			$datas = $this->db->get_where('staff', [
+				'name like' => '%'.$_GET['q'].'%'
+			])->result();
+		} else {
+			if (isset($_GET['page'])) {
+				$page = $_GET['page'];
+			} else {
+				$page = 1;
+			}
+			$limit = 5;
+			$offset = ($page - 1) * $limit;
+			$datas = $this->db->get('staff', $limit, $offset)->result();
+		}
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [
 			'view' => 'admin/staff/index',
 			'datas' => $datas,
 			'msg' => $msg,
-      'page' => $page ?? false,
-      'q' => $_GET['q'] ?? ''
+			'page' => $page ?? false,
+			'q' => $_GET['q'] ?? ''
 		]);
 	}
 
-  public function create() {
-    $this->load->view('admin/app', [
+	public function create() {
+		$this->load->view('admin/app', [
 			'view' => 'admin/staff/form'
 		]);
-  }
+	}
 
 	public function store() {
 		$data = $this->input->post();

@@ -29,6 +29,8 @@ class Profile extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'profile']);
+
 		$data = $this->db->get('profile')->result();
     if (count($data) > 0) {
       $data = $data[0];

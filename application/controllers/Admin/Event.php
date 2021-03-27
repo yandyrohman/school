@@ -21,6 +21,8 @@ class Event extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'event']);
+
 		$datas = $this->db->get('event')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [

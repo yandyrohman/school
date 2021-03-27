@@ -26,6 +26,8 @@ class Gallery extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'gallery']);
+
 		$datas = $this->db->get('gallery')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [

@@ -29,6 +29,8 @@ class Facility extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'facility']);
+
 		$datas = $this->db->get('facility')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [

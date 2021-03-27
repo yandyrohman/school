@@ -15,6 +15,8 @@ class Vm extends CI_Controller {
 	}
 
 	public function index($type = 'visi') {
+		$this->session->set_userdata(['page' => 'vm']);
+
 		$datas = $this->db->get_where('vm', [
 			'type' => $type
 		])->result();

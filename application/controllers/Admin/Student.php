@@ -44,7 +44,8 @@ class Student extends CI_Controller {
 	}
 
 	public function index() {
-		
+		$this->session->set_userdata(['page' => 'student']);
+
 		$this->db->select('student.*, class.name as class_name');
 		$this->db->from('student');
 		$this->db->join('class', 'student.class_id = class.id');

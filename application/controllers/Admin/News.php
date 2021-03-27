@@ -29,6 +29,8 @@ class News extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'news']);
+
 		$datas = $this->db->get('news')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [

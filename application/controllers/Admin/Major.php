@@ -15,6 +15,8 @@ class Major extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'major']);
+
 		$datas = $this->db->get('major')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [

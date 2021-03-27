@@ -29,6 +29,8 @@ class Face extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'face']);
+
 		$datas = $this->db->get('face')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [

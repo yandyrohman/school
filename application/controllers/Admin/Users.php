@@ -32,6 +32,8 @@ class Users extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'users']);
+
 		if (isset($_GET['q'])) {
 			$datas = $this->db->get_where('users', [
 				'name like' => '%'.$_GET['q'].'%'

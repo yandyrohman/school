@@ -21,6 +21,8 @@ class Classs extends CI_Controller {
 	}
 
 	public function index() {
+		$this->session->set_userdata(['page' => 'class']);
+
 		$datas = $this->db->get('class')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [
