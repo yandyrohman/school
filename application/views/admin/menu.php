@@ -238,8 +238,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html"
-                        aria-expanded="false">
+                    <a 
+                        class="sidebar-link waves-effect waves-dark sidebar-link" 
+                        href="<?= base_url('login/logout') ?>"
+                        aria-expanded="false"
+                    >
                         <i class="material-icons">logout</i>
                         <span class="hide-menu">Logout</span>
                     </a>

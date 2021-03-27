@@ -14,7 +14,14 @@ class Vm extends CI_Controller {
 		return $dataStore;
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	public function index($type = 'visi') {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'vm']);
 
 		$datas = $this->db->get_where('vm', [
@@ -29,14 +36,16 @@ class Vm extends CI_Controller {
 		]);
 	}
 
-  public function create($type) {
-    $this->load->view('admin/app', [
+	public function create($type) {
+		$this->isLogin();
+		$this->load->view('admin/app', [
 			'view' => 'admin/vm/form',
 			'type' => $type
 		]);
-  }
+	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('vm', $dataStore);
@@ -48,6 +57,7 @@ class Vm extends CI_Controller {
 	}
 
 	public function delete($id, $type) {
+		$this->isLogin();
 		$this->db->where('id', $id);
 		$this->db->delete('vm');
 

@@ -8,6 +8,12 @@ class Facility extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'name' => $data['name'],
@@ -29,6 +35,7 @@ class Facility extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'facility']);
 
 		$datas = $this->db->get('facility')->result();
@@ -40,13 +47,15 @@ class Facility extends CI_Controller {
 		]);
 	}
 
-  public function create() {
-    $this->load->view('admin/app', [
+	public function create() {
+		$this->isLogin();
+		$this->load->view('admin/app', [
 			'view' => 'admin/facility/form'
 		]);
-  }
+	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('facility', $dataStore);
@@ -62,6 +71,7 @@ class Facility extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$data = $this->db->get_where('facility', [
 			'id' => $id
 		])->row();
@@ -78,6 +88,7 @@ class Facility extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
@@ -95,6 +106,7 @@ class Facility extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->deleteFile($id);
 		
 		$this->db->where('id', $id);

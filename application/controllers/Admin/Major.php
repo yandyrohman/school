@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Major extends CI_Controller {
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'name' => $data['name'],
@@ -15,6 +21,7 @@ class Major extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'major']);
 
 		$datas = $this->db->get('major')->result();
@@ -26,13 +33,15 @@ class Major extends CI_Controller {
 		]);
 	}
 
-  public function create() {
-    $this->load->view('admin/app', [
+	public function create() {
+		$this->isLogin();
+		$this->load->view('admin/app', [
 			'view' => 'admin/major/form'
 		]);
-  }
+	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('major', $dataStore);
@@ -43,7 +52,8 @@ class Major extends CI_Controller {
 		return redirect(base_url('admin/major/index'));
 	}
 
-	public function delete($id) {		
+	public function delete($id) {	
+		$this->isLogin();	
 		$this->db->where('id', $id);
 		$this->db->delete('major');
 

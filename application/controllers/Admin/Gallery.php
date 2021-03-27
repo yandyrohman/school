@@ -8,6 +8,12 @@ class Gallery extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'title' => $data['title'],
@@ -26,6 +32,7 @@ class Gallery extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'gallery']);
 
 		$datas = $this->db->get('gallery')->result();
@@ -37,13 +44,15 @@ class Gallery extends CI_Controller {
 		]);
 	}
 
-  public function create() {
+	public function create() {
+		$this->isLogin();
 		$this->load->view('admin/app', [
 			'view' => 'admin/gallery/form'
 		]);
-  }
+	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('gallery', $dataStore);
@@ -59,6 +68,7 @@ class Gallery extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$data = $this->db->get_where('gallery', [
 			'id' => $id
 		])->row();
@@ -81,6 +91,7 @@ class Gallery extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
@@ -98,6 +109,7 @@ class Gallery extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$photos = $this->getPhotosByGalleryId($id);
 		foreach($photos as $photo) {
 			$this->remove($id, $photo->id, 0, $redirect = false);
@@ -113,6 +125,7 @@ class Gallery extends CI_Controller {
 	}
 
 	public function add($id) {
+		$this->isLogin();
 		$filename = time().'.jpg';
 		$count = $this->input->post('count');
 		$this->upload('photo', $filename);
@@ -134,6 +147,7 @@ class Gallery extends CI_Controller {
 	}
 
 	public function remove($gallery_id, $id, $count, $redirect = true) {
+		$this->isLogin();
 		$photo = $this->getPhotoById($id);
 		unlink('./img/gallery/'.$photo->photo);
 		

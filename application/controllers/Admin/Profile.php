@@ -8,6 +8,12 @@ class Profile extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'nama' => $data['nama'],
@@ -29,14 +35,15 @@ class Profile extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'profile']);
 
 		$data = $this->db->get('profile')->result();
-    if (count($data) > 0) {
-      $data = $data[0];
-    } else {
-      $data = (object)[];
-    }
+		if (count($data) > 0) {
+			$data = $data[0];
+		} else {
+			$data = (object)[];
+    	}
     
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [
@@ -47,6 +54,7 @@ class Profile extends CI_Controller {
 	}
 
 	public function update() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 		$this->db->where('id', 1);

@@ -8,6 +8,12 @@ class Student extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
     	$dataStore = [
 			'student_number' => $data['student_number'],
@@ -44,6 +50,7 @@ class Student extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'student']);
 
 		$this->db->select('student.*, class.name as class_name');
@@ -75,6 +82,7 @@ class Student extends CI_Controller {
 	}
 
 	public function create() {
+		$this->isLogin();
 		$classes = $this->db->get('class')->result();
 		$this->load->view('admin/app', [
 			'view' => 'admin/student/form',
@@ -83,6 +91,7 @@ class Student extends CI_Controller {
 	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('student', $dataStore);
@@ -98,6 +107,7 @@ class Student extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$classes = $this->db->get('class')->result();
 		$data = $this->db->get_where('student', [
 			'id' => $id
@@ -116,6 +126,7 @@ class Student extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
@@ -133,6 +144,7 @@ class Student extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->deleteFile($id);
 		
 		$this->db->where('id', $id);
@@ -145,6 +157,7 @@ class Student extends CI_Controller {
 	}
 
 	public function show($id) {
+		$this->isLogin();
 		$data = $this->getDataById($id);
 		$this->load->view('admin/app', [
 		'view' => 'admin/student/show',

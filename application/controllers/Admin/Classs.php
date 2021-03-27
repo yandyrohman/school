@@ -8,19 +8,26 @@ class Classs extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'major_id' => $data['major_id'],
 			'name' => $data['name'],
 			'grade' => $data['grade'],
-      'created_at' => date('Y-m-d H:i:s'),
-      'updated_at' => date('Y-m-d H:i:s')
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s')
 		];
 
 		return $dataStore;
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'class']);
 
 		$datas = $this->db->get('class')->result();
@@ -32,15 +39,17 @@ class Classs extends CI_Controller {
 		]);
 	}
 
-  public function create() {
+	public function create() {
+		$this->isLogin();
 		$majors = $this->db->get('major')->result();
-    $this->load->view('admin/app', [
+		$this->load->view('admin/app', [
 			'view' => 'admin/class/form',
 			'majors' => $majors
 		]);
-  }
+	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('class', $dataStore);
@@ -52,6 +61,7 @@ class Classs extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->db->where('id', $id);
 		$this->db->delete('class');
 

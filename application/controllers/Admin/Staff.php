@@ -8,6 +8,12 @@ class Staff extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
     $dataStore = [
       'teacher_number' => $data['teacher_number'],
@@ -41,6 +47,7 @@ class Staff extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'staff']);
 
 		if (isset($_GET['q'])) {
@@ -68,12 +75,14 @@ class Staff extends CI_Controller {
 	}
 
 	public function create() {
+		$this->isLogin();
 		$this->load->view('admin/app', [
 			'view' => 'admin/staff/form'
 		]);
 	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('staff', $dataStore);
@@ -89,6 +98,7 @@ class Staff extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$data = $this->db->get_where('staff', [
 			'id' => $id
 		])->row();
@@ -105,6 +115,7 @@ class Staff extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
@@ -122,6 +133,7 @@ class Staff extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->deleteFile($id);
 		
 		$this->db->where('id', $id);
@@ -133,13 +145,14 @@ class Staff extends CI_Controller {
 		return redirect(base_url('admin/staff/index'));
 	}
 
-  public function show($id) {
-    $data = $this->getDataById($id);
-    $this->load->view('admin/app', [
-      'view' => 'admin/staff/show',
-      'data' => $data
-    ]);
-  }
+	public function show($id) {
+		$this->isLogin();
+		$data = $this->getDataById($id);
+		$this->load->view('admin/app', [
+			'view' => 'admin/staff/show',
+			'data' => $data
+		]);
+	}
 
 	private function upload($name, $filename, $id = false) {
 		if ($id) {

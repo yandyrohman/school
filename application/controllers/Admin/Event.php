@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Event extends CI_Controller {
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'title' => $data['title'],
@@ -21,6 +27,7 @@ class Event extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'event']);
 
 		$datas = $this->db->get('event')->result();
@@ -32,13 +39,15 @@ class Event extends CI_Controller {
 		]);
 	}
 
-  public function create() {
-    $this->load->view('admin/app', [
-			'view' => 'admin/event/form'
-		]);
-  }
+	public function create() {
+		$this->isLogin();
+		$this->load->view('admin/app', [
+				'view' => 'admin/event/form'
+			]);
+	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('event', $dataStore);
@@ -50,6 +59,7 @@ class Event extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$data = $this->db->get_where('event', [
 			'id' => $id
 		])->row();
@@ -66,6 +76,7 @@ class Event extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 		$this->db->where('id', $id);
@@ -78,6 +89,7 @@ class Event extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->db->where('id', $id);
 		$this->db->delete('event');
 

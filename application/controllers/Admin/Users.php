@@ -8,6 +8,12 @@ class Users extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'name' => $data['name'],
@@ -32,6 +38,7 @@ class Users extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'users']);
 
 		if (isset($_GET['q'])) {
@@ -59,12 +66,14 @@ class Users extends CI_Controller {
 	}
 
 	public function create() {
+		$this->isLogin();
 		$this->load->view('admin/app', [
 			'view' => 'admin/users/form'
 		]);
 	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 
 		// password validate
@@ -87,6 +96,7 @@ class Users extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$data = $this->db->get_where('users', [
 			'id' => $id
 		])->row();
@@ -103,6 +113,7 @@ class Users extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
@@ -116,6 +127,7 @@ class Users extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->db->where('id', $id);
 		$this->db->delete('users');
 
@@ -126,6 +138,7 @@ class Users extends CI_Controller {
 	}
 
 	public function show($id) {
+		$this->isLogin();
 		$data = $this->getDataById($id);
 		$this->load->view('admin/app', [
 			'view' => 'admin/users/show',

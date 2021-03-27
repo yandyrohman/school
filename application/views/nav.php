@@ -62,9 +62,9 @@
         <a href="#">FAQ</a>
       </div>
     </div>
-    <div class="nav-menu" href="#">
+    <a class="nav-menu" href="<?= base_url('login') ?>">
       <span class="nav-caption" data-sub="6">Login</span>
-    </div>
+    </a>
     <div class="nav-toggle">
       <i class="material-icons">menu</i>
     </div>

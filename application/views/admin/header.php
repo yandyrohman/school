@@ -37,11 +37,11 @@
             </ul>
         </div>
         <div class="profile">
-            <a class="dropdown-item">
+            <a class="dropdown-item" href="<?= base_url('admin/users/show/'.$_SESSION['user_id']) ?>">
                 <i class="mdi mdi-account-box"></i>
                 My Profile
             </a>
-            <a class="dropdown-item">
+            <a class="dropdown-item" href="<?= base_url('login/logout') ?>">
                 <i class="mdi mdi-logout"></i>
                 Logout
             </a>

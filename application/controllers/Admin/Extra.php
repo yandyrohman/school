@@ -8,6 +8,12 @@ class Extra extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'name' => $data['title'],
@@ -30,6 +36,7 @@ class Extra extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'extra']);
 
 		$datas = $this->db->get('extra')->result();
@@ -41,13 +48,15 @@ class Extra extends CI_Controller {
 		]);
 	}
 
-  public function create() {
-    $this->load->view('admin/app', [
+	public function create() {
+		$this->isLogin();
+		$this->load->view('admin/app', [
 			'view' => 'admin/extra/form'
 		]);
-  }
+	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('extra', $dataStore);
@@ -63,6 +72,7 @@ class Extra extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$data = $this->db->get_where('extra', [
 			'id' => $id
 		])->row();
@@ -79,6 +89,7 @@ class Extra extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
@@ -96,6 +107,7 @@ class Extra extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->deleteFile($id);
 		
 		$this->db->where('id', $id);

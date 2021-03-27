@@ -8,6 +8,12 @@ class Achievment extends CI_Controller {
 		$this->load->helper(['form', 'url']);
 	}
 
+	private function isLogin() {
+		if(!isset($_SESSION['has_login'])) {
+			return redirect(base_url('login'));
+		}
+	}
+
 	private function preData($data, $id = false) {
 		$dataStore = [
 			'title' => $data['title'],
@@ -32,6 +38,7 @@ class Achievment extends CI_Controller {
 	}
 
 	public function index() {
+		$this->isLogin();
 		$this->session->set_userdata(['page' => 'achievment']);
 
 		$datas = $this->db->get('achievment')->result();
@@ -44,12 +51,14 @@ class Achievment extends CI_Controller {
 	}
 
 	public function create() {
+		$this->isLogin();
 		$this->load->view('admin/app', [
 			'view' => 'admin/achievment/form'
 		]);
 	}
 
 	public function store() {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data);
 		$this->db->insert('achievment', $dataStore);
@@ -65,6 +74,7 @@ class Achievment extends CI_Controller {
 	}
 
 	public function edit($id) {
+		$this->isLogin();
 		$data = $this->db->get_where('achievment', [
 			'id' => $id
 		])->row();
@@ -81,6 +91,7 @@ class Achievment extends CI_Controller {
 	}
 
 	public function update($id) {
+		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
 
@@ -98,6 +109,7 @@ class Achievment extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$this->isLogin();
 		$this->deleteFile($id);
 		
 		$this->db->where('id', $id);
