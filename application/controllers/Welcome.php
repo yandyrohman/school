@@ -7,12 +7,14 @@ class Welcome extends CI_Controller {
 		$events = $this->dataEvent();
 		$faces = $this->dataFace();
 		$about = $this->dataAbout();
+		$vm = $this->dataVm();
 		// echo "<pre>";
-		// return print_r($about);
+		// return print_r($vm);
 		$this->load->view('home', [
 			'events' => $events,
 			'faces' => $faces,
-			'about' => $about
+			'about' => $about,
+			'vm' => $vm
 		]);
 	}
 
@@ -40,6 +42,15 @@ class Welcome extends CI_Controller {
 	private function dataAbout() {
 		$data = $this->db->get('about');
 		return $data->result()[0];
+	}
+
+	private function dataVm() {
+		$visi = $this->db->get_where('vm', ['type' => 'visi'])->result()[0];
+		$misi = $this->db->get_where('vm', ['type' => 'misi'])->result();
+		return [
+			'visi' => $visi,
+			'misi' => $misi
+		];
 	}
 
 }

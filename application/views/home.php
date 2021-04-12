@@ -94,28 +94,18 @@
       <div class="mission-box">
         <div class="mission-title">( VISI )</div>
         <div class="mission-vision">
-          " Mencetak Siswa yang Kompeten dan Berakhlak "
+          " <?= $vm['visi']->value ?> "
         </div>
         <div class="mission-title">( MISI )</div>
         <div class="mission-mission">
-          <div class="mission-mission-item">
-            <div class="mission-mission-index">1.</div>
-            <div class="mission-mission-value">
-              Lorem ipsum, dolor
+          <?php foreach($vm['misi'] as $num => $misi) : ?>
+            <div class="mission-mission-item">
+              <div class="mission-mission-index"><?= ($num + 1) ?>.</div>
+              <div class="mission-mission-value">
+                <?= $misi->value ?>
+              </div>
             </div>
-          </div>
-          <div class="mission-mission-item">
-            <div class="mission-mission-index">2.</div>
-            <div class="mission-mission-value">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda at adipisci quasi quos.
-            </div>
-          </div>
-          <div class="mission-mission-item">
-            <div class="mission-mission-index">3.</div>
-            <div class="mission-mission-value">
-              Lorem ipsum, dolor sit amet consectetur
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
