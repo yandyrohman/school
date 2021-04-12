@@ -28,19 +28,27 @@
             class="form-control"
             placeholder="Tulis Sambutan" 
             required
+            style="height: 200px"
           ><?= $data->text ?? '' ?></textarea>
         </div>
 
         <div class="form-group">
-          <label>Link Video Youtube</label>
+          <label>Video Youtube</label>
           <input 
             name="youtube"
             type="text"
             class="form-control"
-            placeholder="Telepon"
-            required
-            value="<?= $data->youtube ?? '' ?>"
+            placeholder="Youtube embed link"
           >
+          <small class="form-text">
+            1. klik kanan pada video youtube<br/>
+            2. pilih "Salin kode semat"<br />
+            3. paste-kan pada form input diatas. 
+          </small>
+          <hr />
+          <small class="form-text text-warning">
+            * BIARKAN KOSONG JIKA TIDAK INGIN DIUBAH
+          </small>
         </div>
 
         <div class="d-flex justify-content-end" style="margin-top: 50px">

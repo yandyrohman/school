@@ -67,31 +67,20 @@
     <!-- about -->
     <div class="about">
       <div class="part-title">
-        <div class="part-title-value">SEKILAS TENTANG KAMI</div>
+        <div class="part-title-value">SAMBUTAN SEKOLAH</div>
         <div class="part-title-border"></div>
       </div>
       <div class="about-box">
         <div class="about-text">
           <div class="about-text-title">
-            SMK NURUL ISLAM<br />
-            CIANJUR
+            <?= $about->title ?>
           </div>
           <div class="about-text-value">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid assumenda similique nihil accusamus officia perspiciatis aspernatur architecto praesentium a? 
-            Necessitatibus provident distinctio tempora, quia deleniti quos et corrupti aliquid illo!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Aliquid assumenda similique nihil accusamus officia perspiciatis aspernatur architecto praesentium a? 
-            Necessitatibus provident distinctio tempora, quia deleniti quos et corrupti aliquid illo!
+            <?= $about->text ?>
           </div>
         </div>
         <div class="about-video">
-          <iframe 
-            src="https://www.youtube.com/embed/7n7hqKsMWE0" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
-          </iframe>          
+          <?= $about->youtube ?>    
         </div>
       </div>
     </div>

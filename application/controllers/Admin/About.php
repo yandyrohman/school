@@ -18,10 +18,13 @@ class About extends CI_Controller {
 		$dataStore = [
 			'title' => $data['title'],
 			'text' => $data['text'],
-			'youtube' => $data['youtube'],
 			'created_at' => date('Y-m-d H:i:s'),
 			'updated_at' => date('Y-m-d H:i:s')
 		];
+
+		if($data['youtube'] != '') {
+			$dataStore['youtube'] = $data['youtube'];
+		}
 
 		return $dataStore;
 	}
@@ -53,7 +56,7 @@ class About extends CI_Controller {
 		$this->db->update('about', $dataStore);
 
 		// back
-		$msg = '<div class="alert alert-success">Berhasil ubah about</div>';
+		$msg = '<div class="alert alert-success">Berhasil ubah sambutan</div>';
 		$this->session->set_flashdata('msg', $msg);
 		return redirect(base_url('admin/about/index'));
 	}

@@ -6,11 +6,13 @@ class Welcome extends CI_Controller {
 	public function index() {
 		$events = $this->dataEvent();
 		$faces = $this->dataFace();
+		$about = $this->dataAbout();
 		// echo "<pre>";
-		// return print_r($face);
+		// return print_r($about);
 		$this->load->view('home', [
 			'events' => $events,
-			'faces' => $faces
+			'faces' => $faces,
+			'about' => $about
 		]);
 	}
 
@@ -34,5 +36,10 @@ class Welcome extends CI_Controller {
 		$data = $this->db->get('face');
 		return $data->result(); 
 	} 
+
+	private function dataAbout() {
+		$data = $this->db->get('about');
+		return $data->result()[0];
+	}
 
 }
