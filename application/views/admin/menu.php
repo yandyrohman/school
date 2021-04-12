@@ -20,7 +20,8 @@
                         <?php if(
                             $_SESSION['page'] == 'face' ||
                             $_SESSION['page'] == 'profile' ||
-                            $_SESSION['page'] == 'vm'
+                            $_SESSION['page'] == 'vm' ||
+                            $_SESSION['page'] == 'about'
                         ) : ?>
                             style="display: block"
                         <?php endif; ?>
@@ -33,6 +34,16 @@
                             >
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Tampilan Depan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a 
+                                class="<?= $_SESSION['page'] == 'about' ? 'active ' : '' ?>sidebar-link waves-effect waves-dark sidebar-link" 
+                                href="<?= base_url('admin/about') ?>"
+                                aria-expanded="false"
+                            >
+                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
+                                <span class="hide-menu">Sambutan</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
