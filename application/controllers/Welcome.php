@@ -9,29 +9,25 @@ class Welcome extends CI_Controller {
 		$about = $this->dataAbout();
 		$vm = $this->dataVm();
 		$staff = $this->dataStaff();
-		$count_data = [
-			'staff'		=> $this->count_data('staff'),
-			'students'	=> $this->count_data('student')
-		];
-		$achievment = $this->get_result('achievment');
+		$countPeople = $this->countPeople();
+		$achievment = $this->dataAchievment();
 		$gallery = $this->dataGallery();
-		$extra = $this->get_result('extra');
-		$facility = $this->get_result('facility');
-		$news = $this->get_result('news');
-		// echo "<pre>";
-		// return print_r($gallery);
+		$extra = $this->dataExtra();
+		$facility = $this->dataFacility();
+		$news = $this->dataNews();
+
 		$this->load->view('home', [
 			'events' 		=> $events,
 			'faces' 		=> $faces,
 			'about' 		=> $about,
 			'vm' 			=> $vm,
 			'staffs'		=> $staff,
-			'count_data'	=> $count_data,
+			'count_people'	=> $countPeople,
 			'achievments'	=> $achievment,
 			'gallerys'		=> $gallery,
 			'extras'		=> $extra,
 			'facilitys'		=> $facility,
-			'news_data'		=> $news
+			'newses'		=> $news
 		]);
 	}
 
@@ -58,14 +54,14 @@ class Welcome extends CI_Controller {
 
 	private function dataAbout() {
 		$data = $this->db->get('about');
-		return $data->result()[0];
+		return count($data->result()) != 0 ? $data->result()[0] : [];
 	}
 
 	private function dataVm() {
-		$visi = $this->db->get_where('vm', ['type' => 'visi'])->result()[0];
+		$visi = $this->db->get_where('vm', ['type' => 'visi'])->result();
 		$misi = $this->db->get_where('vm', ['type' => 'misi'])->result();
 		return [
-			'visi' => $visi,
+			'visi' => count($visi) != 0 ? $visi : [],
 			'misi' => $misi
 		];
 	}
@@ -86,10 +82,31 @@ class Welcome extends CI_Controller {
 		return $staff->result();
 	}
 
-	private function count_data($table) {
-		$result = $this->db->count_all($table);
+	private function countPeople() {
+		return [
+			'staff' => $this->db->count_all('staff'),
+			'students'	=> $this->db->count_all('student')
+		];
+	}
 
-		return $result;
+	private function dataAchievment() {
+		$result = $this->db->get('achievment');
+		return $result->result();
+	}
+
+	private function dataExtra() {
+		$result = $this->db->get('extra');
+		return $result->result();
+	}
+
+	private function dataFacility() {
+		$result = $this->db->get('facility');
+		return $result->result();
+	}
+
+	private function dataNews() {
+		$result = $this->db->get('news');
+		return $result->result();
 	}
 
 	private function get_result($table) {
@@ -100,22 +117,25 @@ class Welcome extends CI_Controller {
 
 	private function dataGallery() {
 		$gallerys = $this->db->get('gallery');
+		if (count($gallerys->result()) != 0) {
+			foreach ($gallerys->result() as $key => $gallery) {
+				## Get Image Gallery thumbnail
+				$this->db->where('gallery_id', $gallery->id);
+				$image = $this->db->get('photo')->result();
 
-		foreach ($gallerys->result() as $key => $gallery) {
-			## Get Image Gallery thumbnail
-			$this->db->where('gallery_id', $gallery->id);
-			$image = $this->db->get('photo')->result();
-
-			## Final Result Value
-			$result[$key]['id'] = $gallery->id;
-			$result[$key]['title'] = $gallery->title;
-			$result[$key]['thumbnail'] = ($image) ? $image[0]->photo : 'default.jpg';
-			$result[$key]['text'] = $gallery->text;
-			$result[$key]['count'] = $gallery->count;
-			$result[$key]['created_at'] = $gallery->created_at;
-			$result[$key]['updated_at'] = $gallery->updated_at; 
+				## Final Result Value
+				$result[$key]['id'] = $gallery->id;
+				$result[$key]['title'] = $gallery->title;
+				$result[$key]['thumbnail'] = ($image) ? $image[0]->photo : 'default.jpg';
+				$result[$key]['text'] = $gallery->text;
+				$result[$key]['count'] = $gallery->count;
+				$result[$key]['created_at'] = $gallery->created_at;
+				$result[$key]['updated_at'] = $gallery->updated_at; 
+			}
+			return $result;
+		} else {
+			return [];
 		}
 
-		return $result;
 	}
 }

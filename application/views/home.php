@@ -29,16 +29,23 @@
         </div>
 
         <?php foreach($faces as $i => $face) : ?>
-        <img id="face-img" data-face-img="<?= $i + 1 ?>" src="<?= base_url('img/face/'.$face->photo) ?>">
-        <div class="face-wrap" data-face-wrap="<?= $i + 1 ?>">
-            <div class="face-title"><?= $face->title ?></div>
-            <div class="face-subtitle"><?= $face->text ?></div>
-        </div>
+            <img id="face-img" data-face-img="<?= $i + 1 ?>" src="<?= base_url('img/face/'.$face->photo) ?>">
+            <div class="face-wrap" data-face-wrap="<?= $i + 1 ?>">
+                <div class="face-title"><?= $face->title ?></div>
+                <div class="face-subtitle"><?= $face->text ?></div>
+            </div>
         <?php endforeach; ?>
+        <?php if(count($faces) == 0) : ?>
+            <img id="face-img" data-face-img="1" src="img/face/default.png">
+            <div class="face-wrap" data-face-wrap="1">
+                <div class="face-title">Tidak ada judul</div>
+                <div class="face-subtitle">silahkan tambahkan slide di halaman admin.</div>
+            </div>
+        <?php endif; ?>
 
         <div class="face-indicator">
             <?php foreach($faces as $i => $face) : ?>
-            <span data-bullet="<?= $i + 1?>"></span>
+                <span data-bullet="<?= $i + 1?>"></span>
             <?php endforeach; ?>
         </div>
     </div>
@@ -73,14 +80,14 @@
             <div class="about-box">
                 <div class="about-text">
                     <div class="about-text-title">
-                        <?= $about->title ?>
+                        <?= $about->title ?? 'unknown' ?>
                     </div>
                     <div class="about-text-value">
-                        <?= $about->text ?>
+                        <?= $about->text ?? 'belum ada sambutan, silahkan tambahkan di admin.' ?>
                     </div>
                 </div>
                 <div class="about-video">
-                    <?= $about->youtube ?>
+                    <?= $about->youtube ?? 'belum ada video, silahkan tambahkan di admin'?>
                 </div>
             </div>
         </div>
@@ -94,18 +101,24 @@
             <div class="mission-box">
                 <div class="mission-title">( VISI )</div>
                 <div class="mission-vision">
-                    " <?= $vm['visi']->value ?> "
+                    " <?= $vm['visi']->value ?? 'tidak ada data visi silahkan tambahkan di admin.' ?> "
                 </div>
                 <div class="mission-title">( MISI )</div>
                 <div class="mission-mission">
-                    <?php foreach($vm['misi'] as $num => $misi) : ?>
-                    <div class="mission-mission-item">
-                        <div class="mission-mission-index"><?= ($num + 1) ?>.</div>
-                        <div class="mission-mission-value">
-                            <?= $misi->value ?>
+                    <?php if(count($vm['misi']) != 0) : ?>
+                        <?php foreach($vm['misi'] as $num => $misi) : ?>
+                            <div class="mission-mission-item">
+                                <div class="mission-mission-index"><?= ($num + 1) ?>.</div>
+                                <div class="mission-mission-value">
+                                    <?= $misi->value ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <div class="mission-mission-item">
+                            <div style="grid-column: 1/3; text-align: center">belum ada data misi silahkan tambahkan di admin.</div>
                         </div>
-                    </div>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -117,23 +130,27 @@
                 <div class="part-title-border"></div>
             </div>
             <div class="team-box">
-                <?php foreach ($staffs as $key => $staff) : ?>
-                <div class="team-item">
-                    <img class="team-img" src="<?= base_url('img/staff/'.$staff->photo) ?>">
-                    <div class="team-name"><?= $staff->name; ?></div>
-                    <div class="team-rank"><?= $staff->position; ?></div>
-                </div>
-                <?php endforeach; ?>
-                <div class="team-item">
-                    <div class="team-more">
-                        <i class="material-icons">group_add</i>
+                <?php if(count($staffs) != 0) : ?>
+                    <?php foreach ($staffs as $key => $staff) : ?>
+                        <div class="team-item">
+                            <img class="team-img" src="<?= base_url('img/staff/'.$staff->photo) ?>">
+                            <div class="team-name"><?= $staff->name; ?></div>
+                            <div class="team-rank"><?= $staff->position; ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                    <div class="team-item">
+                        <div class="team-more">
+                            <i class="material-icons">group</i>
+                        </div>
+                        <div class="team-name team-more-link">
+                            <span>Lihat Semua</span>
+                            <i class="material-icons">keyboard_arrow_right</i>
+                        </div>
+                        <div class="team-rank"></div>
                     </div>
-                    <div class="team-name team-more-link">
-                        <span>Lihat Staff Lainnya</span>
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </div>
-                    <div class="team-rank"></div>
-                </div>
+                <?php else : ?>
+                    <div class="team-null">belum ada data staff, silahkan tambahkan di admin.</div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -141,12 +158,12 @@
         <div class="count">
             <div class="count-box">
                 <div class="count-item">
-                    <div class="count-value"><?= number_format($count_data['staff'], 0, ',', '.'); ?></div>
+                    <div class="count-value"><?= number_format($count_people['staff'], 0, ',', '.'); ?></div>
                     <div class="count-title">Staff & Guru</div>
                 </div>
                 <div class="count-line"></div>
                 <div class="count-item">
-                    <div class="count-value"><?= number_format($count_data['students'], 0, ',', '.'); ?></div>
+                    <div class="count-value"><?= number_format($count_people['students'], 0, ',', '.'); ?></div>
                     <div class="count-title">Siswa</div>
                 </div>
             </div>
@@ -159,20 +176,26 @@
                 <div class="part-title-border"></div>
             </div>
             <div class="achievement-box">
-                <?php foreach($achievments as $key => $achievment) : ?>
-                <div class="achievement-item">
-                    <img class="achievement-img" src="<?= base_url('img/achievment/'.$achievment->photo) ?>">
-                    <div class="achievement-info">
-                        <div class="achievement-title">Juara <?= $achievment->rank; ?></div>
-                        <div class="achievement-subtitle"><?= $achievment->title; ?></div>
+                <?php if(count($achievments) != 0) : ?>
+                    <?php foreach($achievments as $key => $achievment) : ?>
+                    <div class="achievement-item">
+                        <img class="achievement-img" src="<?= base_url('img/achievment/'.$achievment->photo) ?>">
+                        <div class="achievement-info">
+                            <div class="achievement-title">Juara <?= $achievment->rank; ?></div>
+                            <div class="achievement-subtitle"><?= $achievment->title; ?></div>
+                        </div>
                     </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="achievement-null">belum ada data prestasi, silahkan tambahkan di admin.</div>
+                <?php endif; ?>
+            </div>
+            <?php if(count($achievments) != 0) : ?>
+                <div class="achievement-more">
+                    <span>Lihat Semua</span>
+                    <i class="material-icons">keyboard_arrow_right</i>
                 </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="achievement-more">
-                <span>Lihat Prestasi Lainnya</span>
-                <i class="material-icons">keyboard_arrow_right</i>
-            </div>
+            <?php endif; ?>
         </div>
 
         <!-- gallery -->
@@ -182,20 +205,26 @@
                 <div class="part-title-border"></div>
             </div>
             <div class="gallery-box">
-                <?php foreach ($gallerys as $key => $gallery) : ?>
-                <div class="gallery-item">
-                    <img class="gallery-img" src="<?= base_url('img/gallery/'.$gallery['thumbnail']) ?>">
-                    <div class="gallery-info">
-                        <div class="gallery-title"><?= $gallery['title']; ?></div>
-                        <div class="gallery-subtitle"><?= date('d M Y', strtotime($gallery['created_at'])); ?></div>
+                <?php if(count($gallerys) != 0 ) : ?>
+                    <?php foreach ($gallerys as $key => $gallery) : ?>
+                    <div class="gallery-item">
+                        <img class="gallery-img" src="<?= base_url('img/gallery/'.$gallery['thumbnail']) ?>">
+                        <div class="gallery-info">
+                            <div class="gallery-title"><?= $gallery['title']; ?></div>
+                            <div class="gallery-subtitle"><?= date('d M Y', strtotime($gallery['created_at'])); ?></div>
+                        </div>
                     </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="gallery-null">belum ada data galeri, silahkan tambahkan di admin.</div>
+                <?php endif; ?>
+            </div>
+            <?php if(count($gallerys) != 0 ) : ?>
+                <div class="achievement-more">
+                    <span>Lihat Semua</span>
+                    <i class="material-icons">keyboard_arrow_right</i>
                 </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="achievement-more">
-                <span>Lihat Foto Lainnya</span>
-                <i class="material-icons">keyboard_arrow_right</i>
-            </div>
+            <?php endif; ?>
         </div>
 
         <!-- extra -->
@@ -205,19 +234,25 @@
                 <div class="part-title-border"></div>
             </div>
             <div class="extra-box">
-                <?php foreach($extras as $key => $extra) : ?>
-                <div class="extra-item">
-                    <img class="extra-img" src="<?= base_url('img/extra/'.$extra->photo) ?>">
-                    <div class="extra-info">
-                        <div class="extra-title"><?= $extra->name; ?></div>
+                <?php if(count($extras) != 0) : ?>
+                    <?php foreach($extras as $key => $extra) : ?>
+                    <div class="extra-item">
+                        <img class="extra-img" src="<?= base_url('img/extra/'.$extra->photo) ?>">
+                        <div class="extra-info">
+                            <div class="extra-title"><?= $extra->name; ?></div>
+                        </div>
                     </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="extra-null">belum ada data extrakurikuler, silahkan tambahkan di admin.</div>
+                <?php endif; ?>
+            </div>
+            <?php if(count($extras) != 0) : ?>
+                <div class="achievement-more">
+                    <span>Lihat Semua</span>
+                    <i class="material-icons">keyboard_arrow_right</i>
                 </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="achievement-more">
-                <span>Selengkapnya</span>
-                <i class="material-icons">keyboard_arrow_right</i>
-            </div>
+            <?php endif; ?>
         </div>
 
         <!-- facilities -->
@@ -227,22 +262,28 @@
                 <div class="part-title-border"></div>
             </div>
             <div class="facilities-box">
-                <?php foreach($facilitys as $key => $facility) : ?>
-                <div class="facilities-item">
-                    <img class="facilities-img" src="<?= base_url('img/facility/'.$facility->photo) ?>">
-                    <div class="facilities-info">
-                        <div class="facilities-title"><?= $facility->name; ?></div>
-                        <div class="facilities-subtitle">
-                            <?= $facility->text; ?>
+                <?php if(count($facilitys) != 0) : ?>
+                    <?php foreach($facilitys as $key => $facility) : ?>
+                    <div class="facilities-item">
+                        <img class="facilities-img" src="<?= base_url('img/facility/'.$facility->photo) ?>">
+                        <div class="facilities-info">
+                            <div class="facilities-title"><?= $facility->name; ?></div>
+                            <div class="facilities-subtitle">
+                                <?= $facility->text; ?>
+                            </div>
                         </div>
                     </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="facilities-null">belum ada data fasilitas, silahkan tambahkan di admin.</div>
+                <?php endif; ?>
+            </div>
+            <?php if(count($facilitys) != 0) : ?>
+                <div class="facilities-more">
+                    <span>Lihat Semua</span>
+                    <i class="material-icons">keyboard_arrow_right</i>
                 </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="facilities-more">
-                <span>Fasilitas Lainnya</span>
-                <i class="material-icons">keyboard_arrow_right</i>
-            </div>
+            <?php endif; ?>
         </div>
 
         <!-- news -->
@@ -252,21 +293,27 @@
                 <div class="part-title-border"></div>
             </div>
             <div class="news-box">
-              <?php foreach($news_data as $key => $news) : ?>
-                <div class="news-item">
-                    <img class="news-img" src="<?= base_url('img/news/'.$news->photo) ?>">
-                    <div class="news-title"><?= $news->title; ?></div>
-                    <div class="news-text">
-                        <?= $news->text; ?>
+                <?php if(count($newses) != 0) : ?>
+                    <?php foreach($newses as $key => $news) : ?>
+                    <div class="news-item">
+                        <img class="news-img" src="<?= base_url('img/news/'.$news->photo) ?>">
+                        <div class="news-title"><?= $news->title; ?></div>
+                        <div class="news-text">
+                            <?= $news->text; ?>
+                        </div>
+                        <div class="news-date"><?= date('D, d M Y', strtotime($news->created_at)); ?></div>
                     </div>
-                    <div class="news-date"><?= date('D, d M Y', strtotime($news->created_at)); ?></div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="news-null">belum ada data berita, silahkan tambahkan di admin.</div>
+                <?php endif; ?>
+            </div>
+            <?php if(count($newses) != 0) : ?>    
+                <div class="news-more">
+                    <span>Lihat Semua</span>
+                    <i class="material-icons">keyboard_arrow_right</i>
                 </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="news-more">
-                <span>Lihat Berita Lainnya</span>
-                <i class="material-icons">keyboard_arrow_right</i>
-            </div>
+            <?php endif; ?>
         </div>
 
         <!-- footer -->
@@ -281,7 +328,7 @@
 <script>
 // carousel face
 let face = 1;
-let faceMax = <?= count($faces) ?>;
+let faceMax = <?= count($faces) != 0 ? count($faces) : 1 ?>;
 $(`img[data-face-img="${face}"]`).css('display', 'block');
 $(`div[data-face-wrap="${face}"]`).css('display', 'flex');
 $(`span[data-bullet="${face}"]`).attr('class', 'fi-active');
