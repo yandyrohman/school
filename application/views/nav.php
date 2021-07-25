@@ -27,11 +27,13 @@
         <i class="material-icons">keyboard_arrow_down</i>
       </span>
       <div class="nav-submenu" data-sub-target="2">
-        <a href="#">Rekayasa Perangkat Lunak (RPL)</a>
-        <a href="#">Teknik Komputer Jaringan (TKJ)</a>
-        <a href="#">Akuntansi (AK)</a>
-        <a href="#">Administrasi Perkantoran (AP)</a>
-        <a href="#">Multimedia (MM)</a>
+        <?php if(count($majors) != 0) : ?>
+          <?php foreach($majors as $major) : ?>
+            <a href="#"><?= $major->name ?></a>
+          <?php endforeach; ?>
+        <?php else : ?>
+          <a href="#">tidak ada jurusan</a>
+        <?php endif; ?>
       </div>
     </div>
     <div class="nav-menu" href="#">
@@ -40,16 +42,13 @@
         <i class="material-icons">keyboard_arrow_down</i>
       </span>
       <div class="nav-submenu" data-sub-target="3">
-        <a href="#">Pramuka</a>
-        <a href="#">Paskibra</a>
-        <a href="#">Boxer</a>
-        <a href="#">PMR</a>
-        <a href="#">Commucation class</a>
-        <a href="#">Drumband</a>
-        <a href="#">Kesenian</a>
-        <a href="#">Futsal</a>
-        <a href="#">Basket</a>
-        <a href="#">Hockey</a>
+        <?php if(count($extras) != 0) : ?>
+          <?php foreach($extras as $extra) : ?>
+            <a href="#"><?= $extra->name ?></a>
+          <?php endforeach; ?>
+        <?php else : ?>
+          <a href="#">tidak ada eskul</a>
+        <?php endif; ?>
       </div>
     </div>
     <div class="nav-menu" href="#">

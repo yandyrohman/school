@@ -15,6 +15,7 @@ class Welcome extends CI_Controller {
 		$extra = $this->dataExtra();
 		$facility = $this->dataFacility();
 		$news = $this->dataNews();
+		$major = $this->dataMajor();
 
 		$this->load->view('home', [
 			'events' 		=> $events,
@@ -27,7 +28,8 @@ class Welcome extends CI_Controller {
 			'gallerys'		=> $gallery,
 			'extras'		=> $extra,
 			'facilitys'		=> $facility,
-			'newses'		=> $news
+			'newses'		=> $news,
+			'majors'		=> $major
 		]);
 	}
 
@@ -109,12 +111,6 @@ class Welcome extends CI_Controller {
 		return $result->result();
 	}
 
-	private function get_result($table) {
-		$result = $this->db->get($table);
-
-		return $result->result();
-	}
-
 	private function dataGallery() {
 		$gallerys = $this->db->get('gallery');
 		if (count($gallerys->result()) != 0) {
@@ -136,6 +132,10 @@ class Welcome extends CI_Controller {
 		} else {
 			return [];
 		}
+	}
 
+	private function dataMajor() {
+		$result = $this->db->get('major');
+		return $result->result();
 	}
 }
