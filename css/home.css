@@ -1060,6 +1060,17 @@ footer {
         background: rgba(0,0,0,0.3);
       }
 
+        .footer-medsos img {
+          width: 70%;
+          height: 70%;
+          filter: grayscale(0.5);
+          transition: 0.3s;
+        }
+
+        .footer-medsos img:hover {
+          filter: none;
+        }
+
 @media only screen and (max-width: 1050px) {
   .team-box {
     grid-template-columns: repeat(2, 250px);

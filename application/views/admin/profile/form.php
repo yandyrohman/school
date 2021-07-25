@@ -112,7 +112,7 @@
             name="facebook"
             type="text"
             class="form-control"
-            placeholder="Facebook"
+            placeholder="Link Profile Facebook"
             required
             value="<?= $data->facebook ?? '' ?>"
           >
@@ -124,7 +124,7 @@
             name="youtube"
             type="text"
             class="form-control"
-            placeholder="Youtube"
+            placeholder="Link Channel Youtube"
             required
             value="<?= $data->youtube ?? '' ?>"
           >
@@ -136,7 +136,7 @@
             name="instagram"
             type="text"
             class="form-control"
-            placeholder="Instagram"
+            placeholder="Link Instagram"
             required
             value="<?= $data->instagram ?? '' ?>"
           >
@@ -148,7 +148,7 @@
             name="twitter"
             type="text"
             class="form-control"
-            placeholder="Twitter"
+            placeholder="Link Twitter"
             required
             value="<?= $data->twitter ?? '' ?>"
           >

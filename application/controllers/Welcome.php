@@ -143,6 +143,15 @@ class Welcome extends CI_Controller {
 
 	private function dataProfile() {
 		$result = $this->db->get('profile');
-		return count($result->result()) != 0 ? $result->result()[0] : [];
+		if (count($result->result()) != 0) {
+			$output = $result->result()[0];
+			$output->facebook = !preg_match('/http/', $output->facebook) ? 'https://'.$output->facebook : $output->facebook;
+			$output->youtube = !preg_match('/http/', $output->youtube) ? 'https://'.$output->youtube : $output->youtube;
+			$output->instagram = !preg_match('/http/', $output->instagram) ? 'https://'.$output->instagram : $output->instagram;
+			$output->twitter = !preg_match('/http/', $output->twitter) ? 'https://'.$output->twitter : $output->twitter;
+			return $output;
+		} else {
+			return [];
+		}
 	}
 }

@@ -1,32 +1,30 @@
 <footer>
   <div class="footer-col">
-    <div class="footer-title-prime">SMK NURUL ISLAM CIANJUR</div>
-    <div class="footer-text">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi consequuntur voluptates repellat blanditiis porro quod eveniet autem.
-    </div>
+    <div class="footer-title-prime"><?= $profile->name ?? 'UNKNOWN' ?></div>
+    <div class="footer-text"><?= $profile->text ?? 'belum ada profile sekolah, silahkan tambahkan di admin.' ?></div>
   </div>
   <div class="footer-col fi-left">
     <div class="footer-title">INFORMASI</div>
     <div class="footer-item-wrap">
       <div class="footer-item">
         <i class="material-icons">location_on</i>
-        <span>Jl. Raya Cianjur, Sukaluyu</span>
+        <span><?= $profile->address ?? 'tidak diketahui' ?></span>
       </div>
       <div class="footer-item">
         <i class="material-icons">call</i>
-        <span>(022) 1234567890</span>
+        <span><?= $profile->phone ?? 'tidak diketahui' ?></span>
       </div>
       <div class="footer-item">
         <i class="material-icons">call</i>
-        <span>0812123456</span>
+        <span><?= $profile->wa ?? 'tidak diketahui' ?></span>
       </div>
       <div class="footer-item">
         <i class="material-icons">email</i>
-        <span>admin@smaknis.sch.id</span>
+        <span><?= $profile->email ?? 'tidak diketahui' ?></span>
       </div>
       <div class="footer-item">
         <i class="material-icons">schedule</i>
-        <span>Senin - Jum'at | 07.00 - 17.00</span>
+        <span><?= $profile->schedule ?? 'tidak diketahui' ?></span>
       </div>
     </div>
   </div>
@@ -34,15 +32,18 @@
     <div class="footer-title">MEDIA SOSIAL</div>
     <div class="footer-item-wrap">
       <div class="footer-box">
-        <div class="footer-medsos">
-          <i class="material-icons">facebook</i>
-        </div>
-        <div class="footer-medsos">
-          <i class="material-icons">facebook</i>
-        </div>
-        <div class="footer-medsos">
-          <i class="material-icons">facebook</i>
-        </div>
+        <a class="footer-medsos" href="<?= $profile->facebook ?>">
+          <img src="<?= base_url('img/footer/facebook.png') ?>" draggable="false" />
+        </a>
+        <a class="footer-medsos" href="<?= $profile->youtube ?>">
+          <img src="<?= base_url('img/footer/youtube.png') ?>" draggable="false" />
+        </a>
+        <a class="footer-medsos" href="<?= $profile->instagram ?>">
+          <img src="<?= base_url('img/footer/instagram.png') ?>" draggable="false" />
+        </a>
+        <a class="footer-medsos" href="<?= $profile->twitter ?>">
+          <img src="<?= base_url('img/footer/twitter.png') ?>" draggable="false" />
+        </a>
       </div>
     </div>
   </div>
