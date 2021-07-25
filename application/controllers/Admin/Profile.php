@@ -14,7 +14,7 @@ class Profile extends CI_Controller {
 		}
 	}
 
-	private function preData($data, $id = false) {
+	private function preData($data) {
 		$dataStore = [
 			'name' => $data['name'],
 			'address' => $data['address'],
@@ -56,17 +56,20 @@ class Profile extends CI_Controller {
 	public function update() {
 		$this->isLogin();
 		$data = $this->input->post();
-		$dataStore = $this->preData($data, $id);
+		$dataStore = $this->preData($data);
 		$isExist = $this->db->get('profile')->result();
 		
+		$hasLogoUpload = $_FILES['logo']['name'];
+		if ($hasLogoUpload != '') {
+			$this->upload('logo');
+		}
+
 		if ($isExist) {
 			$this->db->where('id', 1);
 			$this->db->update('profile', $dataStore);
-			$this->upload('logo');
 		} else {
 			$dataStore['id'] = 1;
 			$this->db->insert('profile', $dataStore);
-			$this->upload('logo');
 		}
 
 		// back
