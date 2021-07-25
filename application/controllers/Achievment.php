@@ -1,10 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Event extends CI_Controller {
+class Achievment extends CI_Controller {
 
-	public function show($id) {
-		$data = $this->db->get_where('event', [
+    public function list() {
+		$datas = $this->db->get('achievment')->result();
+        $title = 'Semua Prestasi';
+        $this->load->view('pages/layout', [
+            'title' => $title,
+            'page' => 'achievment/list',
+            'content' => $datas,
+            'majors' => $this->dataMajor(),
+            'profile' => $this->dataProfile(),
+            'extras' => $this->dataExtra()
+        ]);
+	}
+    
+    public function show($id) {
+		$data = $this->db->get_where('achievment', [
 			'id' => $id
 		])->row();
 
@@ -14,8 +27,11 @@ class Event extends CI_Controller {
 		} else {
 			$this->load->view('pages/layout', [
 				'title' => $data->title,
-				'page' => 'event/index',
-				'content' => $data->text,
+                'sub' => 'Prestasi',
+                'sublink' => 'achievment/list',
+				'page' => 'achievment/show',
+				'content' => $data->story,
+                'photo' => $data->photo,
 				'majors' => $this->dataMajor(),
 				'profile' => $this->dataProfile(),
 				'extras' => $this->dataExtra()

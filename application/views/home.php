@@ -178,23 +178,23 @@
             <div class="achievement-box">
                 <?php if(count($achievments) != 0) : ?>
                     <?php foreach($achievments as $key => $achievment) : ?>
-                    <div class="achievement-item">
+                    <a class="achievement-item" href="<?= base_url('achievment/show/'.$achievment->id) ?>">
                         <img class="achievement-img" src="<?= base_url('img/achievment/'.$achievment->photo) ?>">
                         <div class="achievement-info">
                             <div class="achievement-title">Juara <?= $achievment->rank; ?></div>
                             <div class="achievement-subtitle"><?= $achievment->title; ?></div>
                         </div>
-                    </div>
+                    </a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <div class="achievement-null">belum ada data prestasi, silahkan tambahkan di admin.</div>
                 <?php endif; ?>
             </div>
             <?php if(count($achievments) != 0) : ?>
-                <div class="achievement-more">
+                <a class="achievement-more" href="<?= base_url('achievment/list') ?>">
                     <span>Lihat Semua</span>
                     <i class="material-icons">keyboard_arrow_right</i>
-                </div>
+                </a>
             <?php endif; ?>
         </div>
 
@@ -207,23 +207,23 @@
             <div class="gallery-box">
                 <?php if(count($gallerys) != 0 ) : ?>
                     <?php foreach ($gallerys as $key => $gallery) : ?>
-                    <div class="gallery-item">
+                    <a class="gallery-item" href="<?= base_url('gallery/show/'.$gallery['id']) ?>">
                         <img class="gallery-img" src="<?= base_url('img/gallery/'.$gallery['thumbnail']) ?>">
                         <div class="gallery-info">
                             <div class="gallery-title"><?= $gallery['title']; ?></div>
                             <div class="gallery-subtitle"><?= date('d M Y', strtotime($gallery['created_at'])); ?></div>
                         </div>
-                    </div>
+                    </a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <div class="gallery-null">belum ada data galeri, silahkan tambahkan di admin.</div>
                 <?php endif; ?>
             </div>
             <?php if(count($gallerys) != 0 ) : ?>
-                <div class="achievement-more">
+                <a class="achievement-more" href="<?= base_url('gallery/list') ?>">
                     <span>Lihat Semua</span>
                     <i class="material-icons">keyboard_arrow_right</i>
-                </div>
+                </a>
             <?php endif; ?>
         </div>
 
@@ -236,22 +236,22 @@
             <div class="extra-box">
                 <?php if(count($extras) != 0) : ?>
                     <?php foreach($extras as $key => $extra) : ?>
-                    <div class="extra-item">
+                    <a class="extra-item" href="<?= base_url('extra/show/'.$extra->id) ?>">
                         <img class="extra-img" src="<?= base_url('img/extra/'.$extra->photo) ?>">
                         <div class="extra-info">
                             <div class="extra-title"><?= $extra->name; ?></div>
                         </div>
-                    </div>
+                    </a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <div class="extra-null">belum ada data extrakurikuler, silahkan tambahkan di admin.</div>
                 <?php endif; ?>
             </div>
             <?php if(count($extras) != 0) : ?>
-                <div class="achievement-more">
+                <a class="achievement-more" href="<?= base_url('extra/list') ?>">
                     <span>Lihat Semua</span>
                     <i class="material-icons">keyboard_arrow_right</i>
-                </div>
+                </a>
             <?php endif; ?>
         </div>
 
@@ -264,25 +264,25 @@
             <div class="facilities-box">
                 <?php if(count($facilitys) != 0) : ?>
                     <?php foreach($facilitys as $key => $facility) : ?>
-                    <div class="facilities-item">
+                    <a class="facilities-item" href="<?= base_url('facility/show/'.$facility->id) ?>">
                         <img class="facilities-img" src="<?= base_url('img/facility/'.$facility->photo) ?>">
                         <div class="facilities-info">
                             <div class="facilities-title"><?= $facility->name; ?></div>
                             <div class="facilities-subtitle">
-                                <?= $facility->text; ?>
+                                <?= limit_string($facility->text, 200); ?>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <div class="facilities-null">belum ada data fasilitas, silahkan tambahkan di admin.</div>
                 <?php endif; ?>
             </div>
             <?php if(count($facilitys) != 0) : ?>
-                <div class="facilities-more">
+                <a class="facilities-more" href="<?= base_url('facility/list') ?>">
                     <span>Lihat Semua</span>
                     <i class="material-icons">keyboard_arrow_right</i>
-                </div>
+                </a>
             <?php endif; ?>
         </div>
 
@@ -295,24 +295,24 @@
             <div class="news-box">
                 <?php if(count($newses) != 0) : ?>
                     <?php foreach($newses as $key => $news) : ?>
-                    <div class="news-item">
+                    <a class="news-item" href="<?= base_url('news/show/'.$news->id) ?>">
                         <img class="news-img" src="<?= base_url('img/news/'.$news->photo) ?>">
                         <div class="news-title"><?= $news->title; ?></div>
                         <div class="news-text">
                             <?= $news->text; ?>
                         </div>
                         <div class="news-date"><?= date('D, d M Y', strtotime($news->created_at)); ?></div>
-                    </div>
+                    </a>
                     <?php endforeach; ?>
                 <?php else : ?>
                     <div class="news-null">belum ada data berita, silahkan tambahkan di admin.</div>
                 <?php endif; ?>
             </div>
             <?php if(count($newses) != 0) : ?>    
-                <div class="news-more">
+                <a class="news-more" href="<?= base_url('news/list') ?>">
                     <span>Lihat Semua</span>
                     <i class="material-icons">keyboard_arrow_right</i>
-                </div>
+                </a>
             <?php endif; ?>
         </div>
 

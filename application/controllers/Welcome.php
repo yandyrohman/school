@@ -94,7 +94,7 @@ class Welcome extends CI_Controller {
 	}
 
 	private function dataAchievment() {
-		$result = $this->db->get('achievment');
+		$result = $this->db->order_by('created_at', 'desc')->get('achievment');
 		return $result->result();
 	}
 
@@ -104,17 +104,24 @@ class Welcome extends CI_Controller {
 	}
 
 	private function dataFacility() {
-		$result = $this->db->get('facility');
-		return $result->result();
+		$result = $this->db->get('facility');		
+		if (count($result->result()) >= 2) {
+			$output = [];
+			array_push($output, $result->result()[0]);
+			array_push($output, $result->result()[1]);
+			return $output;
+		} else {
+			return $result->result();
+		}
 	}
 
 	private function dataNews() {
-		$result = $this->db->get('news');
+		$result = $this->db->order_by('created_at', 'desc')->get('news');
 		return $result->result();
 	}
 
 	private function dataGallery() {
-		$gallerys = $this->db->get('gallery');
+		$gallerys = $this->db->order_by('created_at', 'desc')->get('gallery');
 		if (count($gallerys->result()) != 0) {
 			foreach ($gallerys->result() as $key => $gallery) {
 				## Get Image Gallery thumbnail

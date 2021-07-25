@@ -168,6 +168,43 @@
                     <a class="sidebar-link waves-effect waves-dark sidebar-link dropdown-toggle toggle-menu"
                         data-toggle="collapse"
                         aria-expanded="false">
+                        <i class="material-icons">emoji_events</i>
+                        <span class="hide-menu">Data Kegiatan</span>
+                    </a>
+                    <ul class="sidebar-item-sub"
+                        <?php if(
+                            $_SESSION['page'] == 'gallery' ||
+                            $_SESSION['page'] == 'achievment'
+                        ) : ?>
+                            style="display: block"
+                        <?php endif; ?>
+                    >
+                        <li class="sidebar-item">
+                            <a 
+                                class="<?= $_SESSION['page'] == 'gallery' ? 'active ' : '' ?>sidebar-link waves-effect waves-dark sidebar-link" 
+                                href="<?= base_url('admin/gallery') ?>"
+                                aria-expanded="false"
+                            >
+                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
+                                <span class="hide-menu">Galeri Foto</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a 
+                                class="<?= $_SESSION['page'] == 'achievment' ? 'active ' : '' ?>sidebar-link waves-effect waves-dark sidebar-link" 
+                                href="<?= base_url('admin/achievment') ?>"
+                                aria-expanded="false"
+                            >
+                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
+                                <span class="hide-menu">Prestasi</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link dropdown-toggle toggle-menu"
+                        data-toggle="collapse"
+                        aria-expanded="false">
                         <i class="material-icons">dashboard</i>
                         <span class="hide-menu">Data Lainnya</span>
                     </a>
@@ -197,43 +234,6 @@
                             >
                                 <i class="mdi mdi-checkbox-blank-circle-outline"></i>
                                 <span class="hide-menu">Download Area</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link dropdown-toggle toggle-menu"
-                        data-toggle="collapse"
-                        aria-expanded="false">
-                        <i class="material-icons">emoji_events</i>
-                        <span class="hide-menu">Kegiatan</span>
-                    </a>
-                    <ul class="sidebar-item-sub"
-                        <?php if(
-                            $_SESSION['page'] == 'gallery' ||
-                            $_SESSION['page'] == 'achievment'
-                        ) : ?>
-                            style="display: block"
-                        <?php endif; ?>
-                    >
-                        <li class="sidebar-item">
-                            <a 
-                                class="<?= $_SESSION['page'] == 'gallery' ? 'active ' : '' ?>sidebar-link waves-effect waves-dark sidebar-link" 
-                                href="<?= base_url('admin/gallery') ?>"
-                                aria-expanded="false"
-                            >
-                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
-                                <span class="hide-menu">Galeri Foto</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a 
-                                class="<?= $_SESSION['page'] == 'achievment' ? 'active ' : '' ?>sidebar-link waves-effect waves-dark sidebar-link" 
-                                href="<?= base_url('admin/achievment') ?>"
-                                aria-expanded="false"
-                            >
-                                <i class="mdi mdi-checkbox-blank-circle-outline"></i>
-                                <span class="hide-menu">Prestasi</span>
                             </a>
                         </li>
                     </ul>

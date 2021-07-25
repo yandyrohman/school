@@ -35,7 +35,7 @@
               <td><?= $data->count ?></td>
               <td class="flex">
                 <a class="btn btn-sm btn-primary" href="<?= base_url('admin/gallery/edit/'.$data->id) ?>">
-                  <i class="material-icons">visibility</i>
+                  <i class="material-icons">collections</i>
                 </a>
                 <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
                   <i class="material-icons">delete</i>

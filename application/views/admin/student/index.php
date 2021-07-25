@@ -16,7 +16,7 @@
         <div class="col-md-8"></div>
         <div class="col-md-4">
           <form class="d-flex">
-            <input type="text" class="form-control" name="q" placeholder="Cari Nama Staff" value="<?= $q ?>">
+            <input type="text" class="form-control" name="q" placeholder="Cari Nama Siswa" value="<?= $q ?>">
             <?php if($q) : ?>
               <a class="btn btn-sm btn-primary ml-1" style="height: 35px" href="<?= base_url('admin/student') ?>">
                 <i class="material-icons">clear</i>

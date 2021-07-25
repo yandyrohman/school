@@ -1,10 +1,39 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Event extends CI_Controller {
+class Gallery extends CI_Controller {
 
-	public function show($id) {
-		$data = $this->db->get_where('event', [
+    public function list() {
+		$datas = [];
+		$gallerys = $this->db->get('gallery')->result();
+		foreach ($gallerys as $key => $gallery) {
+			## Get Image Gallery thumbnail
+			$this->db->where('gallery_id', $gallery->id);
+			$image = $this->db->get('photo')->result();
+
+			## Final Result Value
+			$datas[$key]['id'] = $gallery->id;
+			$datas[$key]['title'] = $gallery->title;
+			$datas[$key]['thumbnail'] = ($image) ? $image[0]->photo : 'default.jpg';
+			$datas[$key]['text'] = $gallery->text;
+			$datas[$key]['count'] = $gallery->count;
+			$datas[$key]['created_at'] = $gallery->created_at;
+			$datas[$key]['updated_at'] = $gallery->updated_at; 
+		}
+		
+        $title = 'Semua Galeri Foto';
+        $this->load->view('pages/layout', [
+            'title' => $title,
+            'page' => 'gallery/list',
+            'content' => $datas,
+            'majors' => $this->dataMajor(),
+            'profile' => $this->dataProfile(),
+            'extras' => $this->dataExtra()
+        ]);
+	}
+    
+    public function show($id) {
+		$data = $this->db->get_where('gallery', [
 			'id' => $id
 		])->row();
 
@@ -14,7 +43,9 @@ class Event extends CI_Controller {
 		} else {
 			$this->load->view('pages/layout', [
 				'title' => $data->title,
-				'page' => 'event/index',
+                'sub' => 'Galeri',
+                'sublink' => 'gallery/list',
+				'page' => 'gallery/show',
 				'content' => $data->text,
 				'majors' => $this->dataMajor(),
 				'profile' => $this->dataProfile(),

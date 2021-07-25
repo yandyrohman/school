@@ -27,9 +27,13 @@
   </div>
 
   <div class="page-layout-nav">
-    <a href="#">Home</a>
+    <a href="<?= base_url() ?>">Home</a>
     <i class="material-icons">keyboard_arrow_right</i>
-    <a href="#">Judul Halaman</a>
+    <?php if(isset($sub)) : ?>
+      <a href="<?= base_url($sublink) ?>"><?= $sub ?></a>
+      <i class="material-icons">keyboard_arrow_right</i>
+    <?php endif; ?>
+    <div class="page-layout-nav-title"><?= $title ?></div>
   </div>
 
   <div class="page-layout-second-title">
