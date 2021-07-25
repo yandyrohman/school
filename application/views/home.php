@@ -64,7 +64,7 @@
                 <a href="<?= base_url('event/show/'.$event->id) ?>" class="event-item">
                     <div class="event-item-title"><?= $event->title ?></div>
                     <div class="event-item-value"><?= $event->view ?></div>
-                    <div class="event-item-date">22 November 2020</div>
+                    <div class="event-item-date"><?= date('d F Y', strtotime($event->created_at)) ?></div>
                 </a>
                 <?php endforeach; ?>
             </div>
@@ -126,7 +126,7 @@
         <!-- team -->
         <div class="team">
             <div class="part-title">
-                <div class="part-title-value">Tim Pengajar & Staff</div>
+                <div class="part-title-value">TIM PENGAJAR & STAFF</div>
                 <div class="part-title-border"></div>
             </div>
             <div class="team-box">
@@ -135,17 +135,17 @@
                         <div class="team-item">
                             <img class="team-img" src="<?= base_url('img/staff/'.$staff->photo) ?>">
                             <div class="team-name"><?= $staff->name; ?></div>
-                            <div class="team-rank"><?= $staff->position; ?></div>
+                            <div class="team-rank"><?= staff_position($staff->position); ?></div>
                         </div>
                     <?php endforeach; ?>
                     <div class="team-item">
                         <div class="team-more">
                             <i class="material-icons">group</i>
                         </div>
-                        <div class="team-name team-more-link">
+                        <a class="team-name team-more-link" href="<?= base_url('staff/list') ?>">
                             <span>Lihat Semua</span>
                             <i class="material-icons">keyboard_arrow_right</i>
-                        </div>
+                        </a>
                         <div class="team-rank"></div>
                     </div>
                 <?php else : ?>
@@ -172,7 +172,7 @@
         <!-- achievement -->
         <div class="achievement">
             <div class="part-title">
-                <div class="part-title-value">Prestasi</div>
+                <div class="part-title-value">PRESTASI</div>
                 <div class="part-title-border"></div>
             </div>
             <div class="achievement-box">
@@ -201,7 +201,7 @@
         <!-- gallery -->
         <div class="gallery">
             <div class="part-title">
-                <div class="part-title-value">Galeri</div>
+                <div class="part-title-value">GALERI</div>
                 <div class="part-title-border"></div>
             </div>
             <div class="gallery-box">
@@ -230,7 +230,7 @@
         <!-- extra -->
         <div class="extra">
             <div class="part-title">
-                <div class="part-title-value">Extrakulikuler</div>
+                <div class="part-title-value">EKSTRAKURIKULER</div>
                 <div class="part-title-border"></div>
             </div>
             <div class="extra-box">
@@ -258,7 +258,7 @@
         <!-- facilities -->
         <div class="facilities">
             <div class="part-title">
-                <div class="part-title-value">Fasilitas</div>
+                <div class="part-title-value">FASILITAS</div>
                 <div class="part-title-border"></div>
             </div>
             <div class="facilities-box">
@@ -289,7 +289,7 @@
         <!-- news -->
         <div class="news">
             <div class="part-title">
-                <div class="part-title-value">Berita Terbaru</div>
+                <div class="part-title-value">BERITA TERBARU</div>
                 <div class="part-title-border"></div>
             </div>
             <div class="news-box">

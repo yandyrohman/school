@@ -1,27 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Event extends CI_Controller {
+class Staff extends CI_Controller {
 
-	public function show($id) {
-		$data = $this->db->get_where('event', [
-			'id' => $id
-		])->row();
-
-		if ($data == null) {
-			echo "halaman tidak ditemukan";
-			return;
-		} else {
-			$this->load->view('pages/layout', [
-				'title' => $data->title,
-				'page' => 'event/index',
-				'content' => $data->text,
-				'date' => date('d F Y', strtotime($data->created_at)),
-				'majors' => $this->dataMajor(),
-				'profile' => $this->dataProfile(),
-				'extras' => $this->dataExtra()
-			]);
-		}
+    public function list() {
+		$datas = $this->db->order_by('position', 'asc')->get('staff')->result();
+        $title = 'Semua Staff & Guru';
+        $this->load->view('pages/layout', [
+            'title' => $title,
+            'page' => 'staff/list',
+            'content' => $datas,
+            'majors' => $this->dataMajor(),
+            'profile' => $this->dataProfile(),
+            'extras' => $this->dataExtra()
+        ]);
 	}
 
 	private function dataExtra() {

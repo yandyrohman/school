@@ -19,33 +19,40 @@ class Welcome extends CI_Controller {
 		$profile = $this->dataProfile();
 
 		$this->load->view('home', [
-			'events' 		=> $events,
+			'events' 		=> $this->limitData($events, 4),
 			'faces' 		=> $faces,
 			'about' 		=> $about,
 			'vm' 			=> $vm,
-			'staffs'		=> $staff,
+			'staffs'		=> $this->limitData($staff, 3),
 			'count_people'	=> $countPeople,
-			'achievments'	=> $achievment,
-			'gallerys'		=> $gallery,
-			'extras'		=> $extra,
-			'facilitys'		=> $facility,
-			'newses'		=> $news,
+			'achievments'	=> $this->limitData($achievment, 4),
+			'gallerys'		=> $this->limitData($gallery, 4),
+			'extras'		=> $this->limitData($extra, 4),
+			'facilitys'		=> $this->limitData($facility, 2),
+			'newses'		=> $this->limitData($news, 4),
 			'majors'		=> $major,
 			'profile'		=> $profile
 		]);
 	}
 
+	private function limitData($datas, $limit) {
+		$output = [];
+		foreach($datas as $index => $data) {
+			if ($index < $limit) {
+				array_push($output, $data);
+			}
+		}
+		return $output;
+	}
+
 	private function dataEvent() {
-		$this->db->where('is_active', 1);
-		
-		# ambil 4 data pertama
-		$data = $this->db->get('event', 4);
+		$data = $this->db->where('is_active', 1)->order_by('created_at', 'desc')->get('event');
 		$output = $data->result(); 
 		
 		# viewable string
 		foreach($output as $item) {
 			$item->view = strip_tags($item->text);
-			$item->view = substr($item->view, 0, 15).' ...';
+			$item->view = limit_string($item->view, 30);
 		}
 
 		return $output;
@@ -71,18 +78,7 @@ class Welcome extends CI_Controller {
 	}
 
 	private function dataStaff() {
-		$this->db->select("*,
-			CASE 
-				WHEN position = 'a' THEN 'Kepala Sekolah'
-				WHEN position = 'b' THEN 'Wakil Kepala Sekolah' 
-				WHEN position = 'c' THEN 'Kepala Jurusan'
-				WHEN position = 'd' THEN 'Guru'
-				WHEN position = 'e' THEN 'Staff TU'
-				WHEN position = 'f' THEN 'Satpam'
-			END AS position
-		", FALSE);
-		$staff = $this->db->get('staff');
-
+		$staff = $this->db->order_by('position', 'asc')->get('staff');
 		return $staff->result();
 	}
 
@@ -105,14 +101,7 @@ class Welcome extends CI_Controller {
 
 	private function dataFacility() {
 		$result = $this->db->get('facility');		
-		if (count($result->result()) >= 2) {
-			$output = [];
-			array_push($output, $result->result()[0]);
-			array_push($output, $result->result()[1]);
-			return $output;
-		} else {
-			return $result->result();
-		}
+		return $result->result();
 	}
 
 	private function dataNews() {
