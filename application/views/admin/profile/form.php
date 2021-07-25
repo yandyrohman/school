@@ -11,24 +11,28 @@
 
         <div class="form-group">
           <label>Logo</label><br/>
-          <div class="profile-img-wrapper">
-            <img id="logo" style="height: 50px" src="<?= base_url('img/logo.png') ?>">
+          <div class="d-flex">
+            <div class="profile-img-wrapper">
+              <img id="logo" style="height: 50px" src="<?= base_url('img/profile/logo.png') ?>">
+            </div>
+            <div class="ml-3">
+              <input type="file" class="form-control" name="logo"/>
+              <small class="form-text text-warning">
+                * BIARKAN KOSONG JIKA TIDAK INGIN DIUBAH
+              </small>
+            </div>
           </div>
-          <input type="file" class="form-control" name="logo"/>
-          <small class="form-text text-warning">
-            * BIARKAN KOSONG JIKA TIDAK INGIN DIUBAH
-          </small>
         </div>
 
         <div class="form-group">
           <label>Nama Sekolah</label>
           <input 
-            name="nama" 
+            name="name" 
             class="form-control" 
             type="text" 
             placeholder="Masukan Nama Sekolah" 
             required
-            value="<?= $data->nama ?? '' ?>"
+            value="<?= $data->name ?? '' ?>"
           >
         </div>
 

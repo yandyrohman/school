@@ -38,7 +38,7 @@
         <?php if(count($faces) == 0) : ?>
             <img id="face-img" data-face-img="1" src="img/face/default.png">
             <div class="face-wrap" data-face-wrap="1">
-                <div class="face-title">Tidak ada judul</div>
+                <div class="face-title">Tidak ada slide</div>
                 <div class="face-subtitle">silahkan tambahkan slide di halaman admin.</div>
             </div>
         <?php endif; ?>

@@ -16,7 +16,7 @@ class Profile extends CI_Controller {
 
 	private function preData($data, $id = false) {
 		$dataStore = [
-			'nama' => $data['nama'],
+			'name' => $data['name'],
 			'address' => $data['address'],
 			'phone' => $data['phone'],
 			'wa' => $data['wa'],
@@ -57,9 +57,17 @@ class Profile extends CI_Controller {
 		$this->isLogin();
 		$data = $this->input->post();
 		$dataStore = $this->preData($data, $id);
-		$this->db->where('id', 1);
-		$this->db->update('profile', $dataStore);
-		$this->upload('logo');
+		$isExist = $this->db->get('profile')->result();
+		
+		if ($isExist) {
+			$this->db->where('id', 1);
+			$this->db->update('profile', $dataStore);
+			$this->upload('logo');
+		} else {
+			$dataStore['id'] = 1;
+			$this->db->insert('profile', $dataStore);
+			$this->upload('logo');
+		}
 
 		// back
 		$msg = '<div class="alert alert-success">Berhasil ubah profile</div>';
@@ -68,9 +76,9 @@ class Profile extends CI_Controller {
 	}
 
 	private function upload($name) {
-		unlink('./img/logo.png');
+		unlink('./img/profile/logo.png');
 		$this->load->library('upload', [
-			'upload_path' => './img/',
+			'upload_path' => './img/profile/',
 			'allowed_types' => 'gif|jpg|png',
 			'file_name' => 'logo.png'
 		]);

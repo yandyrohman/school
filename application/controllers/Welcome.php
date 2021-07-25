@@ -16,6 +16,7 @@ class Welcome extends CI_Controller {
 		$facility = $this->dataFacility();
 		$news = $this->dataNews();
 		$major = $this->dataMajor();
+		$profile = $this->dataProfile();
 
 		$this->load->view('home', [
 			'events' 		=> $events,
@@ -29,7 +30,8 @@ class Welcome extends CI_Controller {
 			'extras'		=> $extra,
 			'facilitys'		=> $facility,
 			'newses'		=> $news,
-			'majors'		=> $major
+			'majors'		=> $major,
+			'profile'		=> $profile
 		]);
 	}
 
@@ -137,5 +139,10 @@ class Welcome extends CI_Controller {
 	private function dataMajor() {
 		$result = $this->db->get('major');
 		return $result->result();
+	}
+
+	private function dataProfile() {
+		$result = $this->db->get('profile');
+		return count($result->result()) != 0 ? $result->result()[0] : [];
 	}
 }

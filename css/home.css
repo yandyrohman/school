@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 250px 1fr;
   padding: 0 100px;
   box-sizing: border-box;
   z-index: 99;
@@ -24,13 +24,25 @@
 
   .nav-logo {
     height: 60px;
-    display: flex;
-    align-items: center;
   }
 
-    .nav-logo img {
-      height: 40px;
+    .nav-home {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      height: 100%;
     }
+
+      .nav-logo img {
+        height: 40px;
+      }
+
+      .nav-school-name {
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 15px;
+      }
 
   .nav-menus {
     display: flex;
