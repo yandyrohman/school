@@ -12,14 +12,14 @@
         <i class="material-icons">keyboard_arrow_down</i>
       </span>
       <div class="nav-submenu" data-sub-target="1">
-        <a href="#">Profil Sekolah</a>
-        <a href="#">Visi Misi</a>
-        <a href="#">Staff & Pengajar</a>
-        <a href="#">Prestasi</a>
-        <a href="#">Galeri Sekolah</a>
-        <a href="#">Fasilitas</a>
-        <a href="#">Berita Terbaru</a>
-        <a href="#">Download</a>
+        <a href="<?= base_url('about/show') ?>">Sambutan</a>
+        <a href="<?= base_url('vm/show') ?>">Visi Misi</a>
+        <a href="<?= base_url('staff/list') ?>">Staff & Pengajar</a>
+        <a href="<?= base_url('achievment/list') ?>">Prestasi</a>
+        <a href="<?= base_url('gallery/list') ?>">Galeri Sekolah</a>
+        <a href="<?= base_url('facility/list') ?>">Fasilitas</a>
+        <a href="<?= base_url('news/list') ?>">Berita Terbaru</a>
+        <a href="<?= base_url('download/list') ?>">Download Area</a>
       </div>
     </div>
     <div class="nav-menu" href="#">
@@ -30,10 +30,10 @@
       <div class="nav-submenu" data-sub-target="2">
         <?php if(count($majors) != 0) : ?>
           <?php foreach($majors as $major) : ?>
-            <a href="#"><?= $major->name ?></a>
+            <a href="<?= base_url('major/show/'.$major->id) ?>"><?= $major->name ?></a>
           <?php endforeach; ?>
         <?php else : ?>
-          <a href="#">tidak ada jurusan</a>
+          <a href="#"><i>tidak ada jurusan</i></a>
         <?php endif; ?>
       </div>
     </div>
@@ -45,10 +45,10 @@
       <div class="nav-submenu" data-sub-target="3">
         <?php if(count($extras) != 0) : ?>
           <?php foreach($extras as $extra) : ?>
-            <a href="#"><?= $extra->name ?></a>
+            <a href="<?= base_url('extra/show/'.$extra->id) ?>"><?= $extra->name ?></a>
           <?php endforeach; ?>
         <?php else : ?>
-          <a href="#">tidak ada eskul</a>
+          <a href="#"><i>tidak ada eskul</i></a>
         <?php endif; ?>
       </div>
     </div>
@@ -58,8 +58,7 @@
         <i class="material-icons">keyboard_arrow_down</i>
       </span>
       <div class="nav-submenu" data-sub-target="4">
-        <a href="#">Kontak (langsung ke footer)</a>
-        <a href="#">FAQ</a>
+        <a href="#footer">Kontak</a>
       </div>
     </div>
     <a class="nav-menu" href="<?= base_url('login') ?>">
@@ -84,25 +83,51 @@
       <i class="material-icons">keyboard_arrow_right</i>
     </div>
     <div class="s-submenus" data-menu-target="1">
-      <div class="s-submenu">SubMenu1</div>
-      <div class="s-submenu">SubMenu2</div>
+      <a class="s-submenu" href="<?= base_url('about/show') ?>">Sambutan</a>
+      <a class="s-submenu" href="<?= base_url('vm/show') ?>">Visi Misi</a>
+      <a class="s-submenu" href="<?= base_url('staff/list') ?>">Staff & Pengajar</a>
+      <a class="s-submenu" href="<?= base_url('achievment/list') ?>">Prestasi</a>
+      <a class="s-submenu" href="<?= base_url('gallery/list') ?>">Galeri Sekolah</a>
+      <a class="s-submenu" href="<?= base_url('facility/list') ?>">Fasilitas</a>
+      <a class="s-submenu" href="<?= base_url('news/list') ?>">Berita Terbaru</a>
+      <a class="s-submenu" href="<?= base_url('download/list') ?>">Download Area</a>
     </div>
     <div class="s-menu" data-menu="2">
-      <span>Menu2</span>
+      <span>Jurusan</span>
       <i class="material-icons">keyboard_arrow_right</i>
     </div>
     <div class="s-submenus" data-menu-target="2">
-      <div class="s-submenu">SubMenu1</div>
-      <div class="s-submenu">SubMenu2</div>
+      <?php if(count($majors) != 0) : ?>
+        <?php foreach($majors as $major) : ?>
+          <a class="s-submenu" href="<?= base_url('major/show/'.$major->id) ?>"><?= limit_string($major->name, 20) ?></a>
+        <?php endforeach; ?>
+      <?php else : ?>
+        <a class="s-submenu" href="#"><i>tidak ada jurusan</i></a>
+      <?php endif; ?>
     </div>
     <div class="s-menu" data-menu="3">
-      <span>Menu3</span>
+      <span>Ekstrakurikuler</span>
       <i class="material-icons">keyboard_arrow_right</i>
     </div>
     <div class="s-submenus" data-menu-target="3">
-      <div class="s-submenu">SubMenu1</div>
-      <div class="s-submenu">SubMenu2</div>
+      <?php if(count($extras) != 0) : ?>
+        <?php foreach($extras as $extra) : ?>
+          <a class="s-submenu" href="<?= base_url('extra/show/'.$extra->id) ?>"><?= $extra->name ?></a>
+        <?php endforeach; ?>
+      <?php else : ?>
+        <a class="s-submenu" href="#"><i>tidak ada eskul</i></a>
+      <?php endif; ?>
     </div>
+    <div class="s-menu" data-menu="4">
+      <span>Hubungi&nbsp;Kami</span>
+      <i class="material-icons">keyboard_arrow_right</i>
+    </div>
+    <div class="s-submenus" data-menu-target="4">
+      <a class="s-submenu" href="#footer">Kontak</a>
+    </div>
+    <a class="s-menu" href="<?= base_url('login') ?>">
+      <span>Login</span>
+    </a>
   </div>
 </div>
 

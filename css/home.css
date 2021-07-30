@@ -181,6 +181,8 @@
       box-sizing: border-box;
       user-select: none;
       cursor: pointer;
+      text-decoration: none;
+      color: #000;
     }
 
       .s-menu i {
@@ -201,6 +203,8 @@
         justify-content: center;
         padding: 0 20px 0 40px;
         box-sizing: border-box;
+        text-decoration: none;
+        color: #000;
       }
 
 .part-title {

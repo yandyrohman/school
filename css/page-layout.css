@@ -186,6 +186,33 @@
     transform: scale(1.2);
   }
 
+.page-layout-show-youtube {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+  .page-layout-show-youtube iframe {
+    width: 727px;
+    height: 409px;
+  }
+
+.page-layout-table-download {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+  
+  .page-layout-table-download table {
+    width: 50%;
+    border-collapse: collapse;
+  }
+  
+    .page-layout-table-download table td {
+      padding: 10px;
+    }
+
 @media only screen and (max-width: 900px) {
   .page-layout-title {
     width: calc(100% - 70px);
@@ -237,5 +264,15 @@
   .page-layout-show-gallery {
     grid-template-columns: repeat(3, 100px);
     grid-gap: 10px;
+  }
+
+  .page-layout-show-youtube iframe {
+    width: 300px;
+    height: 180px;
+  }
+
+  .page-layout-table-download table {
+    width: 100%;
+    border-collapse: collapse;
   }
 }

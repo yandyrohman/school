@@ -32,10 +32,7 @@
               <td><?= $i + 1 ?></td>
               <td><?= $data->name ?></td>
               <td class="flex">
-                <a class="btn btn-sm btn-success ml-1" href="#">
-                  <i class="material-icons">visibility</i>
-                </a>
-                <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(1)">
+                <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
                   <i class="material-icons">delete</i>
                 </a>
               </td>

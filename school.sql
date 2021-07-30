@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Mar 2021 pada 06.31
--- Versi server: 10.4.13-MariaDB
--- Versi PHP: 7.4.8
+-- Waktu pembuatan: 30 Jul 2021 pada 17.30
+-- Versi server: 10.4.18-MariaDB
+-- Versi PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,6 +36,13 @@ CREATE TABLE `about` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `about`
+--
+
+INSERT INTO `about` (`id`, `title`, `text`, `youtube`, `created_at`, `updated_at`) VALUES
+(1, 'SMK BISA!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ad laboriosam dolor quod odit quaerat officia nisi dicta nostrum necessitatibus soluta eveniet esse quo nihil vero hic, obcaecati veritatis! Explicabo.', '<iframe width=\"853\" height=\"480\" src=\"https://www.youtube.com/embed/8ZUmGj5fMbQ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>', '2021-07-30 08:55:36', '2021-07-30 08:55:36');
+
 -- --------------------------------------------------------
 
 --
@@ -54,19 +61,16 @@ CREATE TABLE `achievment` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Struktur dari tabel `achievment_members`
+-- Dumping data untuk tabel `achievment`
 --
 
-CREATE TABLE `achievment_members` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `achievment_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `achievment` (`id`, `title`, `rank`, `year`, `location`, `story`, `photo`, `created_at`, `updated_at`) VALUES
+(3, 'Futsal Cianjur Cup 2021 jhgjhg jhgfjhgf h', '1', '2021', 'Canjur', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic impedit qui beatae?\r\n', '1627180987.jpg', '2021-07-24 21:43:07', '2021-07-24 22:22:09'),
+(4, 'Liburan Cup', 'klnl', '5000', 'jlkjn', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic', '1627195452.jpg', '2021-07-25 01:44:12', '2021-07-25 01:44:12'),
+(5, 'Prestasi Baru', 'kjb', '8787', 'hkjhbk', 'kjhkj jh kj kjh kjhbjh', '1627197125.jpg', '2021-07-25 02:12:05', '2021-07-25 02:12:05'),
+(6, 'Bambang Cup 2021', '1', '2021', 'Cianjur', 'hbkjbjkhb jhbkjh hb kjhb jkhb kjhb kjhb kjhb ', '1627203373.jpg', '2021-07-25 03:56:13', '2021-07-25 03:56:13'),
+(7, 'Euyyy Challenge', '1', '2000', 'Bandung', 'jhbkjhb', '1627203420.jpg', '2021-07-25 03:56:47', '2021-07-25 03:57:00');
 
 -- --------------------------------------------------------
 
@@ -88,7 +92,7 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`id`, `major_id`, `name`, `grade`, `created_at`, `updated_at`) VALUES
-(3, 2, 'X RPL 1', 10, '2021-03-10 22:06:48', '2021-03-10 22:06:48'),
+(1, 2, 'X RPL 1', 10, '2021-03-10 22:06:48', '2021-03-10 22:06:48'),
 (4, 2, 'XI RPL 1', 11, '2021-03-10 22:06:59', '2021-03-10 22:06:59'),
 (6, 2, 'XII RPL 1', 12, '2021-03-10 22:13:21', '2021-03-10 22:13:21');
 
@@ -106,6 +110,13 @@ CREATE TABLE `download` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `download`
+--
+
+INSERT INTO `download` (`id`, `name`, `link`, `summary`, `created_at`, `updated_at`) VALUES
+(5, 'Jadwal UAS', 'https://youtube.com', 'jhbkjhb khbk ', '2021-07-30 09:42:21', '2021-07-30 09:42:40');
 
 -- --------------------------------------------------------
 
@@ -127,10 +138,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `title`, `text`, `is_active`, `created_at`, `updated_at`) VALUES
-(4, 'Festival Musim Panas', '<p>yahahahah hayuuuk</p>\r\n', 1, '2021-02-27 20:53:07', '2021-02-27 20:53:07'),
-(5, 'Jadwal Kesenian', '<p>dsfgsdfdfg</p>\r\n', 1, '2021-02-27 20:53:26', '2021-02-27 20:53:26'),
-(6, 'Jadwal UTS', '<p>kjhkjh <strong>kjhjkhbj</strong> <em>jhbjbjh</em></p>\r\n', 1, '2021-03-05 22:00:38', '2021-03-05 22:00:38'),
-(7, 'Jadwal UTS', '<p>jhjhbjh <strong>hvjhvjh</strong> <em>jhjh <strong><s>jhkjhbjhbjh</s></strong></em></p>\r\n', 1, '2021-03-05 22:03:10', '2021-03-05 22:03:10');
+(9, 'Eskul futsal resmi dibubarkan', '<p>yahaha hayu kjhkjh kjbkjhb kjhbkjhb kjhbkjhb kjhbkjhb kjhbkjhb kjbkjhb kjhbjkh jkhjb kjhkjhkjh jkkjhbkjh kjhkjh</p>\r\n', 1, '2021-07-24 21:32:44', '2021-07-25 04:12:41'),
+(10, 'Baru', '<p>jbkjhbkjh</p>\r\n', 1, '2021-07-25 02:11:39', '2021-07-25 02:11:39');
 
 -- --------------------------------------------------------
 
@@ -144,10 +153,17 @@ CREATE TABLE `extra` (
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `schedule` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `extra`
+--
+
+INSERT INTO `extra` (`id`, `name`, `photo`, `text`, `schedule`, `created_at`, `updated_at`) VALUES
+(4, 'Karate', '1627189515.jpg', 'hkjhbkj kjhbkjhb kjhbkjb kjhbkjhb kjhbkjhb kjhbkjb kjhb', 'Senin, Kamis', '2021-07-25 00:05:15', '2021-07-25 00:05:15'),
+(5, 'Futsal', '1627189532.jpg', 'jhkjh kjhkj kjhkjh kjhkjhkj h', 'Minggu', '2021-07-25 00:05:32', '2021-07-25 00:05:32');
 
 -- --------------------------------------------------------
 
@@ -164,14 +180,6 @@ CREATE TABLE `face` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `face`
---
-
-INSERT INTO `face` (`id`, `photo`, `title`, `text`, `created_at`, `updated_at`) VALUES
-(10, '1615382642.jpg', 'Halo Alam Dunia', 'Tak tahu sampai kapan\r\nJalan yang ku tempuh ini sampai di ujung\r\nLelah... Aku merasa lelah\r\nDengan jalan yang aku tapaki\r\nMungkin memang harus ku kemudikan dengan baik\r\nAgar sampai di tujuan sesuai keinginan\r\nTapi, bisa kah diri ku?\r\nBisakah kemudi itu berkolaborasi dengan pikiran ku ini?\r\nAtaukah kemudi itu yang bisa membawa ku ke jalan yang benar?\r\nTuhan... Ada kah seseorang yang Kau siapkan untuk ku\r\nUntuk bersama menopang beban yang ku pikul ini\r\nAgar mau ku bagi kesedihan ku\r\nMau ku bagi derita ku', '2021-03-07 05:46:20', '2021-03-10 07:24:02'),
-(11, '1615117612.jpg', 'Hmm Aku Suka', 'Lelah... Aku merasa lelah\r\nDengan jalan yang aku tapaki\r\nMungkin memang harus ku kemudikan dengan baik\r\nAgar sampai di tujuan sesuai keinginan', '2021-03-07 05:46:52', '2021-03-07 05:46:52');
-
 -- --------------------------------------------------------
 
 --
@@ -186,6 +194,15 @@ CREATE TABLE `facility` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `facility`
+--
+
+INSERT INTO `facility` (`id`, `name`, `text`, `photo`, `created_at`, `updated_at`) VALUES
+(5, 'Kantin Geulis', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic', '1627189584.jpg', '2021-07-25 00:06:24', '2021-07-25 02:06:49'),
+(7, 'Pijat ++', 'sfdf drgdf drgd', '1627192718.jpg', '2021-07-25 00:58:38', '2021-07-25 00:58:38'),
+(8, 'Balap Kuda', 'ssss', '1627192732.jpg', '2021-07-25 00:58:52', '2021-07-25 00:58:52');
 
 -- --------------------------------------------------------
 
@@ -210,10 +227,19 @@ CREATE TABLE `faq` (
 CREATE TABLE `gallery` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `count` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `gallery`
+--
+
+INSERT INTO `gallery` (`id`, `title`, `text`, `count`, `created_at`, `updated_at`) VALUES
+(7, 'Liburan', 'jkhbkj kjhb kjhb kjh ', 2, '2021-07-24 21:44:47', '2021-07-24 21:44:47'),
+(8, 'Galeri Baru', 'jhkjh h jhvj hgjh gjhg hg hg hjfg hg h fhgh jgfhg fjh gfjhg f rusak keyboard euyyyy!!!', 2, '2021-07-25 02:15:33', '2021-07-25 02:15:33');
 
 -- --------------------------------------------------------
 
@@ -223,6 +249,7 @@ CREATE TABLE `gallery` (
 
 CREATE TABLE `major` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -233,9 +260,9 @@ CREATE TABLE `major` (
 -- Dumping data untuk tabel `major`
 --
 
-INSERT INTO `major` (`id`, `name`, `text`, `created_at`, `updated_at`) VALUES
-(2, 'Rekayasa Perangkat Lunak', 'kdhfbkjshd askjdfbajsd skjdhfkjasd ksjdhfbkajsdf aksjdhfbkjasdf askjdhfbkjsadf skdjfbkajsdhf askdjhfbkasjhdfb', '2021-03-10 21:46:50', '2021-03-10 21:46:50'),
-(3, 'Akuntansi', 'hbfuksd kshdbfk ksjdhbsj dsuhdbs dkj suhdcb lkjsadhf ljshad sadjfbas lijbflis lsijdbf sadjsbdf slidjfs dfsijdfsad fsdf sadf sad fasdf sadfs fdasdfasdf asdfasdf asdf asdfasdf asdf asdf asdf sadf asdf sadf', '2021-03-10 21:47:14', '2021-03-10 21:47:14');
+INSERT INTO `major` (`id`, `photo`, `name`, `text`, `created_at`, `updated_at`) VALUES
+(8, '1627657524.jpg', 'Rekayasa Perangkat Lunak', 'jhkjhbk kjhkjh kjhkjhkghj', '2021-07-30 10:05:24', '2021-07-30 10:05:24'),
+(9, '1627658072.jpg', 'Teknik Komputer Jaringan', 'hgjhg jhgjhg hgjhgfj hgfjhfjh gjhfjhfg j', '2021-07-30 10:14:32', '2021-07-30 10:14:32');
 
 -- --------------------------------------------------------
 
@@ -268,10 +295,19 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `news` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `photo`, `text`, `created_at`, `updated_at`) VALUES
+(4, 'Pohon tumbang sesatkan jalan', '1627189743.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hicLorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem distinctio recusandae, nam accusantium minus iste velit, totam corrupti fugiat, minima ipsa architecto provident qui. A neque hic', '2021-07-25 00:09:03', '2021-07-25 02:05:22'),
+(5, 'Gedung II kebakaran', '1627193506.jpg', 'jhjhgjhg hgjhggh ghgh hgghg ghghg ghgh hg', '2021-07-25 01:11:46', '2021-07-25 01:11:46');
 
 -- --------------------------------------------------------
 
@@ -282,10 +318,20 @@ CREATE TABLE `news` (
 CREATE TABLE `photo` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `gallery_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `photo`
+--
+
+INSERT INTO `photo` (`id`, `gallery_id`, `photo`, `created_at`, `updated_at`) VALUES
+(19, '7', '1627181106.jpg', '2021-07-24 21:45:06', '2021-07-24 21:45:06'),
+(21, '7', '1627181148.jpg', '2021-07-24 21:45:48', '2021-07-24 21:45:48'),
+(22, '8', '1627197340.jpg', '2021-07-25 02:15:40', '2021-07-25 02:15:40'),
+(23, '8', '1627197345.jpg', '2021-07-25 02:15:45', '2021-07-25 02:15:45');
 
 -- --------------------------------------------------------
 
@@ -296,7 +342,7 @@ CREATE TABLE `photo` (
 CREATE TABLE `profile` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `wa` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -315,8 +361,8 @@ CREATE TABLE `profile` (
 -- Dumping data untuk tabel `profile`
 --
 
-INSERT INTO `profile` (`id`, `logo`, `nama`, `address`, `phone`, `wa`, `email`, `schedule`, `facebook`, `youtube`, `instagram`, `twitter`, `text`, `created_at`, `updated_at`) VALUES
-(1, 'sdfsdf', 'SMK Nurul Islamss', 'sdfsd', 'sdfsdf', 'sdfsdf', 'sdfsd', 'sdfsd', 'sdfsd', 'sddf', 'sdfsdf', 'sdfds', 'sdfdsf', '2021-03-09 16:35:54', '2021-03-09 16:35:54');
+INSERT INTO `profile` (`id`, `logo`, `name`, `address`, `phone`, `wa`, `email`, `schedule`, `facebook`, `youtube`, `instagram`, `twitter`, `text`, `created_at`, `updated_at`) VALUES
+(1, '', 'SMK HEHE BOY', 'Tokyo deket rumah kaori', '3209987', '081221212', 'sekolah@gmail.com', 'Senin - Jum\'at | 07.00 - 17.00', 'facebook.com', 'yutub.com', 'ig.com', 'tw.com', 'Pada suatu hari seorang bujangan sedang berfikir keras..', '2021-07-24 21:20:39', '2021-07-24 21:20:39');
 
 -- --------------------------------------------------------
 
@@ -345,6 +391,20 @@ CREATE TABLE `staff` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `staff`
+--
+
+INSERT INTO `staff` (`id`, `teacher_number`, `name`, `position`, `gender`, `birth_date`, `birth_place`, `religion`, `address`, `village`, `district`, `city`, `province`, `phone`, `email`, `photo`, `created_at`, `updated_at`) VALUES
+(22, '123123', 'Peter Parker', 'a', 'L', '2000-12-12', 'cianjur', 'islam', 'Tokyo deket rumah kaori', 'kg', 'kjhbk', 'kjhb', 'kjh', '089898', 'ee', '1627200477.jpg', '2021-07-25 03:07:57', '2021-07-25 03:07:57'),
+(23, '123123', 'Neneng Cantil', 'b', 'L', '2000-12-12', 'cianjur', 'islam', 'Tokyo deket rumah kaori', 'kg', 'f', 'f', 'f', 'f', 'f', '1627200509.jpg', '2021-07-25 03:08:29', '2021-07-25 03:08:29'),
+(24, '123123', 'Wakarimashita', 'c', 'L', '2000-12-12', 'y', 'islam', 'y', 'y', 'y', 'y', 'y', 'y', 'y', '1627200533.jpg', '2021-07-25 03:08:53', '2021-07-25 03:08:53'),
+(25, '333', 'Sopo Jarwo', 'a', 'L', '2000-12-12', 'u', 'islam', 'u', 'u', 'u', 'u', 'u', 'u', 'u', '1627200585.jpg', '2021-07-25 03:09:45', '2021-07-25 03:09:45'),
+(26, '222', 'Puncak Komedi', 'a', 'L', '2000-12-12', 'ii', 'islam', 'i', 'i', 'i', 'i', 'i', 'i', 'q', '1627200622.jpg', '2021-07-25 03:10:12', '2021-07-25 03:10:22'),
+(27, '33', 'Aku Siapa', 'a', 'L', '2000-12-12', 'i', 'islam', 'i', 'i', 'i', 'i', 'i', 'i', 'i', '1627200686.jpg', '2021-07-25 03:11:26', '2021-07-25 03:11:26'),
+(28, '00', 'Ucok', 'a', 'L', '2000-12-12', 'o', 'islam', 'o', 'oo', 'o', 'o', 'o', 'o', 'o', '1627200703.jpg', '2021-07-25 03:11:43', '2021-07-25 03:11:43'),
+(29, '5555', 'Ihhhhh', 'e', 'L', '2000-12-12', 'o', 'islam', 'o', 'o', 'o', 'o', 'oo', 'o', 'o', '1627201868.jpg', '2021-07-25 03:31:08', '2021-07-25 03:31:08');
+
 -- --------------------------------------------------------
 
 --
@@ -370,7 +430,7 @@ CREATE TABLE `student` (
   `province` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -385,11 +445,20 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` int(11) NOT NULL,
-  `last_login` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `name`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'yandi', '123', 'email@email.email', 'Bambang', 1, '2021-03-23 17:08:27', '2021-03-23 17:17:57'),
+(3, 'ujang', '123', 'email.com', 'Ujang', 2, '2021-03-23 17:20:17', '2021-03-23 17:20:17');
 
 -- --------------------------------------------------------
 
@@ -410,10 +479,10 @@ CREATE TABLE `vm` (
 --
 
 INSERT INTO `vm` (`id`, `type`, `value`, `created_at`, `updated_at`) VALUES
-(4, 'misi', 'Misi Satu', '2021-03-09 17:09:00', '2021-03-09 17:09:00'),
-(5, 'misi', 'Misi Dua', '2021-03-09 17:09:32', '2021-03-09 17:09:32'),
-(6, 'misi', 'Misi Tiga', '2021-03-09 17:09:37', '2021-03-09 17:09:37'),
-(8, 'visi', 'Ini visi kami', '2021-03-09 17:10:03', '2021-03-09 17:10:03');
+(11, 'visi', 'Ini visi saya', '2021-07-30 09:14:25', '2021-07-30 09:14:25'),
+(13, 'misi', 'Misi Dua', '2021-07-30 09:14:41', '2021-07-30 09:14:41'),
+(14, 'misi', 'Misi Satu', '2021-07-30 09:14:48', '2021-07-30 09:14:48'),
+(15, 'misi', 'Misi Tiga', '2021-07-30 09:14:52', '2021-07-30 09:14:52');
 
 --
 -- Indexes for dumped tables
@@ -430,14 +499,6 @@ ALTER TABLE `about`
 --
 ALTER TABLE `achievment`
   ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `achievment_members`
---
-ALTER TABLE `achievment_members`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `achievment_members_achievment_id_index` (`achievment_id`),
-  ADD KEY `achievment_members_student_id_index` (`student_id`);
 
 --
 -- Indeks untuk tabel `class`
@@ -552,19 +613,13 @@ ALTER TABLE `vm`
 -- AUTO_INCREMENT untuk tabel `about`
 --
 ALTER TABLE `about`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `achievment`
 --
 ALTER TABLE `achievment`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `achievment_members`
---
-ALTER TABLE `achievment_members`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `class`
@@ -576,31 +631,31 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT untuk tabel `download`
 --
 ALTER TABLE `download`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `extra`
 --
 ALTER TABLE `extra`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `face`
 --
 ALTER TABLE `face`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `facility`
 --
 ALTER TABLE `facility`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `faq`
@@ -612,13 +667,13 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT untuk tabel `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `major`
 --
 ALTER TABLE `major`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -630,13 +685,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `profile`
@@ -648,25 +703,25 @@ ALTER TABLE `profile`
 -- AUTO_INCREMENT untuk tabel `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `vm`
 --
 ALTER TABLE `vm`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

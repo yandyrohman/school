@@ -4,7 +4,7 @@
       <b>Form Jurusan</b>
     </div>
     <div class="card-body">
-        <form action="<?= base_url('admin/major/store') ?>" method="POST">
+        <form action="<?= base_url('admin/major/store') ?>" method="POST" method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
           <label>Nama Jurusan</label>
@@ -15,6 +15,16 @@
             placeholder="Masukan Judul Tampilan" 
             required
           >
+        </div>
+
+        <div class="form-group">
+          <label>Logo Jurusan</label>
+          <input type="file" class="form-control" name="photo"/>
+          <?php if (isset($data->id)) : ?>
+            <small class="form-text text-warning">
+              * BIARKAN KOSONG JIKA TIDAK INGIN DIUBAH
+            </small>
+          <?php endif; ?>
         </div>
 
         <div class="form-group">

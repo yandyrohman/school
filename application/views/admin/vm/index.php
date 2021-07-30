@@ -55,6 +55,18 @@
             </td>
           </tr>
         <?php endforeach; ?>
+
+        <?php if(count($datas) == 0 && $type == 'visi') : ?>
+          <tr>
+            <td colspan="3" align="center">Belum ada data visi.</td>
+          </tr>
+        <?php endif; ?>
+
+        <?php if(count($datas) == 0 && $type == 'misi') : ?>
+          <tr>
+            <td colspan="3" align="center">Belum ada data misi.</td>
+          </tr>
+        <?php endif; ?>
           
         </tbody>
       </table>

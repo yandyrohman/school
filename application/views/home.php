@@ -74,7 +74,7 @@
         <!-- about -->
         <div class="about">
             <div class="part-title">
-                <div class="part-title-value">SAMBUTAN SEKOLAH</div>
+                <div class="part-title-value">SAMBUTAN</div>
                 <div class="part-title-border"></div>
             </div>
             <div class="about-box">

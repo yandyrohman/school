@@ -13,9 +13,13 @@ class Major extends CI_Controller {
 		$dataStore = [
 			'name' => $data['name'],
 			'text' => $data['text'],
-      'created_at' => date('Y-m-d H:i:s'),
-      'updated_at' => date('Y-m-d H:i:s')
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s')
 		];
+
+		if (!empty($_FILES['photo']['name'])) {
+			$dataStore['photo'] = time().'.jpg';
+		}
 
 		return $dataStore;
 	}
@@ -46,6 +50,10 @@ class Major extends CI_Controller {
 		$dataStore = $this->preData($data);
 		$this->db->insert('major', $dataStore);
 
+		if (isset($dataStore['photo'])) {
+			$this->upload('photo', $dataStore['photo']);
+		}
+
 		// back
 		$msg = '<div class="alert alert-success">Berhasil tambah jurusan</div>';
 		$this->session->set_flashdata('msg', $msg);
@@ -54,6 +62,8 @@ class Major extends CI_Controller {
 
 	public function delete($id) {	
 		$this->isLogin();	
+		$this->deleteFile($id);
+
 		$this->db->where('id', $id);
 		$this->db->delete('major');
 
@@ -61,6 +71,33 @@ class Major extends CI_Controller {
 		$msg = '<div class="alert alert-success">Berhasil hapus jurusan</div>';
 		$this->session->set_flashdata('msg', $msg);
 		return redirect(base_url('admin/major/index'));
+	}
+
+	private function upload($name, $filename, $id = false) {
+		if ($id) {
+			$data = $this->getDataById($id);
+			unlink('./img/major/'.$data->photo);
+		}
+		
+		$this->load->library('upload', [
+			'upload_path' => './img/major/',
+			'allowed_types' => 'gif|jpg|png',
+			'file_name' => $filename
+		]);
+		$this->upload->do_upload($name);
+	}
+
+	private function deleteFile($id) {
+		$data = $this->getDataById($id);
+		$filename = $data->photo;
+		unlink('./img/major/'.$data->photo);
+	}
+
+	private function getDataById($id) {
+		$data = $this->db->get_where('major', [
+			'id' => $id
+		])->result(); 
+		return $data[0];
 	}
 
 }

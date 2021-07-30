@@ -10,12 +10,12 @@
       <form action="<?= base_url('admin/about/update') ?>" method="POST">
 
         <div class="form-group">
-          <label>Nama Sekolah</label>
+          <label>Judul</label>
           <input 
             name="title" 
             class="form-control" 
             type="text" 
-            placeholder="Masukan Nama Sekolah" 
+            placeholder="Masukan Judul Sambutan" 
             required
             value="<?= $data->title ?? '' ?>"
           >

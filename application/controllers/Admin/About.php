@@ -14,7 +14,7 @@ class About extends CI_Controller {
 		}
 	}
 
-	private function preData($data, $id = false) {
+	private function preData($data) {
 		$dataStore = [
 			'title' => $data['title'],
 			'text' => $data['text'],
@@ -51,9 +51,16 @@ class About extends CI_Controller {
 	public function update() {
 		$this->isLogin();
 		$data = $this->input->post();
-		$dataStore = $this->preData($data, $id);
-		$this->db->where('id', 1);
-		$this->db->update('about', $dataStore);
+		$dataStore = $this->preData($data);
+		$isExist = $this->db->get('about')->result();
+
+		if ($isExist) {
+			$this->db->where('id', 1);
+			$this->db->update('about', $dataStore);
+		} else {
+			$dataStore['id'] = 1;
+			$this->db->insert('about', $dataStore);
+		}
 
 		// back
 		$msg = '<div class="alert alert-success">Berhasil ubah sambutan</div>';
@@ -62,4 +69,3 @@ class About extends CI_Controller {
 	}
 
 }
-
