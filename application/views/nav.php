@@ -1,7 +1,7 @@
 <div class="nav">
   <div class="nav-logo">
     <a class="nav-home" href="<?= base_url('/') ?>">
-      <img src="<?= base_url('img/profile/logo.png') ?>" draggable="false" />
+      <img src="<?= base_url() ?>img/profile/<?= $profile->logo ?? 'default.jpg' ?>" draggable="false" />
       <div class="nav-school-name"><?= $profile->name ?? 'UNKNOWN' ?></div>
     </a>
   </div>

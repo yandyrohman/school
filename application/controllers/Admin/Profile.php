@@ -16,6 +16,7 @@ class Profile extends CI_Controller {
 
 	private function preData($data) {
 		$dataStore = [
+			'logo' => 'logo.png',
 			'name' => $data['name'],
 			'address' => $data['address'],
 			'phone' => $data['phone'],

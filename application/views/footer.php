@@ -32,16 +32,16 @@
     <div class="footer-title">MEDIA SOSIAL</div>
     <div class="footer-item-wrap">
       <div class="footer-box">
-        <a class="footer-medsos" href="<?= $profile->facebook ?>">
+        <a class="footer-medsos" href="<?= $profile->facebook ?? '#' ?>">
           <img src="<?= base_url('img/footer/facebook.png') ?>" draggable="false" />
         </a>
-        <a class="footer-medsos" href="<?= $profile->youtube ?>">
+        <a class="footer-medsos" href="<?= $profile->youtube ?? '#' ?>">
           <img src="<?= base_url('img/footer/youtube.png') ?>" draggable="false" />
         </a>
-        <a class="footer-medsos" href="<?= $profile->instagram ?>">
+        <a class="footer-medsos" href="<?= $profile->instagram ?? '#' ?>">
           <img src="<?= base_url('img/footer/instagram.png') ?>" draggable="false" />
         </a>
-        <a class="footer-medsos" href="<?= $profile->twitter ?>">
+        <a class="footer-medsos" href="<?= $profile->twitter ?? '#' ?>">
           <img src="<?= base_url('img/footer/twitter.png') ?>" draggable="false" />
         </a>
       </div>
