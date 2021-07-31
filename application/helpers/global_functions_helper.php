@@ -26,3 +26,13 @@ function staff_position($char) {
         return '-';
     }
 }
+
+function pages_banner() {
+    $ci = get_instance();
+    $faces = $ci->db->get('face')->result();
+    if (count($faces) != 0) {
+        return base_url('img/face/'.$faces[0]->photo);
+    } else {
+        return base_url('img/face/default.png');
+    }
+}

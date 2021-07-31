@@ -22,7 +22,7 @@
   <?php $this->load->view('nav') ?>
   
   <div class="page-layout-bg">
-    <img src="<?= base_url('img/banner.jpg') ?>">
+    <img src="<?= pages_banner() ?>">
     <div class="page-layout-title"><?= strtoupper($title) ?></div>
   </div>
 
