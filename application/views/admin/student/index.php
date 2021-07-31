@@ -2,10 +2,16 @@
   <div class="card">
     <div class="card-header">
       <b>Siswa</b>
-      <a class="btn btn-primary btn-sm" href="<?= base_url('admin/student/create') ?>" style="justify-self: end">
-        <i class="material-icons">add</i>
-        <span>TAMBAH</span>
-      </a>
+      <div class="flex justify-end">
+        <a class="btn btn-primary btn-sm mr-3" href="<?= base_url('admin/student/create') ?>" style="justify-self: end">
+          <i class="material-icons">add</i>
+          <span>TAMBAH</span>
+        </a>
+        <a class="btn btn-danger btn-sm" href="<?= base_url('admin/student/upgradeform') ?>" style="justify-self: end">
+          <i class="material-icons">arrow_upward</i>
+          <span>NAIKAN KELAS</span>
+        </a>
+      </div>
     </div>
     <div class="card-body">
       <?php if(isset($msg)) : ?>
@@ -13,7 +19,20 @@
       <?php endif; ?>
       
       <div class="row mb-2">
-        <div class="col-md-8"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <select class="form-control" id="filter-class">
+            <option selected value="<?= base_url('admin/student') ?>">Semua Kelas</option>
+            <?php foreach($classs as $class) : ?>
+              <option 
+                <?= $class->id == $class_id ? 'selected' : '' ?> 
+                value="<?= base_url('admin/student?class_id='.$class->id) ?>"
+              >
+                  <?= $class->name ?>
+              </option>
+            <?php endforeach; ?>
+          </select>
+        </div>
         <div class="col-md-4">
           <form class="d-flex">
             <input type="text" class="form-control" name="q" placeholder="Cari Nama Siswa" value="<?= $q ?>">
@@ -50,12 +69,24 @@
           
           <?php foreach($datas as $i => $data) : ?>
             <tr>
-              <td><?= (($page - 1) * 5) + ($i + 1) ?></td>
+              <td>
+                <?php if($q) : ?>
+                  <?= $i + 1 ?>
+                <?php else : ?>
+                  <?= (($page - 1) * 5) + ($i + 1) ?>
+                <?php endif; ?>
+              </td>
               <td>
                 <img class="img" src="<?= base_url('img/student/'.$data->photo) ?>">
               </td>
               <td><?= $data->name ?></td>
-              <td><?= $data->class_name ?></td>
+              <td>
+                <?php if($data->class_name != '') : ?>
+                  <?= $data->class_name ?>
+                <?php else : ?>
+                  -
+                <?php endif; ?>
+              </td>
               <td class="flex">
                 <a class="btn btn-sm btn-success" href="<?= base_url('admin/student/show/'.$data->id) ?>">
                   <i class="material-icons">visibility</i>
@@ -79,7 +110,7 @@
             <a 
               type="button" 
               class="btn btn-primary btn-sm" 
-              href="<?= base_url('admin/student?page='.(($page - 1) == 0 ? 1 : ($page - 1))) ?>"
+              href="<?= base_url('admin/student?page='.(($page - 1) == 0 ? 1 : ($page - 1))).($class_id ? ('&class_id='.$class_id) : '') ?>"
             >
               <i class="material-icons">keyboard_arrow_left</i>
             </a>
@@ -87,7 +118,7 @@
             <a 
               type="button" 
               class="btn btn-primary btn-sm" 
-              href="<?= base_url('admin/student?page='.($page + 1)) ?>"
+              href="<?= base_url('admin/student?page='.($page + 1)).($class_id ? ('&class_id='.$class_id) : '') ?>"
             >
               <i class="material-icons">keyboard_arrow_right</i>
             </a>
@@ -105,6 +136,11 @@
       window.location = `<?= base_url() ?>admin/student/delete/${id}`
     }
   }
+
+  $('#filter-class').on('change', function() {
+    let loc = $(this).val();
+    window.location = loc
+  })
 </script>
 
 <style>
@@ -134,6 +170,10 @@
   .img {
     width: 70px;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
+  }
+
+  .justify-end {
+    justify-content: flex-end;
   }
 
 </style>

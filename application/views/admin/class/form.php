@@ -18,16 +18,6 @@
         </div>
 
         <div class="form-group">
-          <label>Tingkat</label>
-          <select name="grade" required class="form-control">
-            <option value="" hidden required>- Pilih Tingkat -</option>
-            <?php for($i=1; $i<=12; $i++) : ?>
-              <option value="<?= $i ?>"><?= $i ?></option>
-            <?php endfor; ?>
-          </select>
-        </div>
-
-        <div class="form-group">
           <label>Jurusan *(jika ada)</label>
           <select name="major_id" class="form-control">
             <option value="0" selected hidden>- Pilih Jurusan -</option>

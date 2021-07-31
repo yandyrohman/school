@@ -31,7 +31,13 @@
 
         <div class="form-group">
           <label>Kelas</label><br/>
-          <b><?= $data->class_name ?></b>
+          <b>
+            <?php if($data->class_name != '') : ?>
+              <?= $data->class_name ?>
+            <?php else : ?>
+              -
+            <?php endif; ?>
+          </b>
         </div>
         <hr/>
 

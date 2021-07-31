@@ -55,8 +55,12 @@ class Student extends CI_Controller {
 
 		$this->db->select('student.*, class.name as class_name');
 		$this->db->from('student');
-		$this->db->join('class', 'student.class_id = class.id');
+		$this->db->join('class', 'student.class_id = class.id', 'left');
 		
+		if (isset($_GET['class_id'])) {
+			$this->db->where('class_id', $_GET['class_id']);
+		}
+
 		if (isset($_GET['q'])) {
 			$this->db->like('student.name', $_GET['q']);
 			$datas = $this->db->get()->result();
@@ -77,7 +81,9 @@ class Student extends CI_Controller {
 			'datas' => $datas,
 			'msg' => $msg,
 			'page' => $page ?? false,
-			'q' => $_GET['q'] ?? ''
+			'q' => $_GET['q'] ?? '',
+			'classs' => $this->db->get('class')->result(),
+			'class_id' => $_GET['class_id'] ?? ''
 		]);
 	}
 
@@ -160,8 +166,8 @@ class Student extends CI_Controller {
 		$this->isLogin();
 		$data = $this->getDataById($id);
 		$this->load->view('admin/app', [
-		'view' => 'admin/student/show',
-		'data' => $data
+			'view' => 'admin/student/show',
+			'data' => $data
 		]);
 	}
 
@@ -188,11 +194,55 @@ class Student extends CI_Controller {
 	private function getDataById($id) {
 		$this->db->select('student.*, class.name as class_name');
 		$this->db->from('student');
-		$this->db->join('class', 'student.class_id = class.id');
+		$this->db->join('class', 'student.class_id = class.id', 'left');
 
 		$this->db->where('student.id', $id);
 		$data = $this->db->get()->result(); 
 		return $data[0];
+	}
+
+	public function upgradeForm() {
+		$msg = $this->session->flashdata('msg');
+		$datas = $this->db->order_by('id', 'desc')->get('class')->result();
+		$this->load->view('admin/app', [
+			'view' => 'admin/student/upgrade',
+			'datas' => $datas,
+			'msg' => $msg
+		]);
+	}
+
+	public function upgrade() {
+
+		// cek if duplicate upgrade class
+		$upgradeExist = [];
+		$duplicate = false;
+		foreach($_POST as $before => $after) {
+			if (isset($upgradeExist[$after])) {
+				$duplicate = true;
+			}
+			$upgradeExist[$after] = true;
+		}
+		if ($duplicate) {
+			$msg = '<div class="alert alert-danger">Tidak boleh memilih kelas naik yang sama.</div>';
+			$this->session->set_flashdata('msg', $msg);
+			return redirect(base_url('admin/student/upgradeform'));
+		}
+
+		// print_r($_POST);
+		// return;
+
+		// update class in student
+		foreach($_POST as $before => $after) {
+			$this->db->where('class_id', $before);
+			$this->db->update('student', [
+				'class_id' => $after
+			]);
+		}
+
+		// back
+		$msg = '<div class="alert alert-success">Kelas berhasil dinaikan</div>';
+		$this->session->set_flashdata('msg', $msg);
+		return redirect(base_url('admin/student/index'));
 	}
 
 }

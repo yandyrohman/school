@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jul 2021 pada 17.30
+-- Waktu pembuatan: 31 Jul 2021 pada 11.11
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.3.27
 
@@ -82,7 +82,6 @@ CREATE TABLE `class` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `major_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `grade` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -91,10 +90,8 @@ CREATE TABLE `class` (
 -- Dumping data untuk tabel `class`
 --
 
-INSERT INTO `class` (`id`, `major_id`, `name`, `grade`, `created_at`, `updated_at`) VALUES
-(1, 2, 'X RPL 1', 10, '2021-03-10 22:06:48', '2021-03-10 22:06:48'),
-(4, 2, 'XI RPL 1', 11, '2021-03-10 22:06:59', '2021-03-10 22:06:59'),
-(6, 2, 'XII RPL 1', 12, '2021-03-10 22:13:21', '2021-03-10 22:13:21');
+INSERT INTO `class` (`id`, `major_id`, `name`, `created_at`, `updated_at`) VALUES
+(10, 0, 'Alumni', '2021-07-31 04:09:03', '2021-07-31 04:09:03');
 
 -- --------------------------------------------------------
 
@@ -261,8 +258,8 @@ CREATE TABLE `major` (
 --
 
 INSERT INTO `major` (`id`, `photo`, `name`, `text`, `created_at`, `updated_at`) VALUES
-(8, '1627657524.jpg', 'Rekayasa Perangkat Lunak', 'jhkjhbk kjhkjh kjhkjhkghj', '2021-07-30 10:05:24', '2021-07-30 10:05:24'),
-(9, '1627658072.jpg', 'Teknik Komputer Jaringan', 'hgjhg jhgjhg hgjhgfj hgfjhfjh gjhfjhfg j', '2021-07-30 10:14:32', '2021-07-30 10:14:32');
+(10, '1627722530.jpg', 'RPL', 'kjhbkjb kjhbkjhb kjhbkjhb kjhbjhb kjhbkjhbk jhbkjhbk ', '2021-07-31 04:08:50', '2021-07-31 04:08:50'),
+(11, '1627722541.jpg', 'TKJ', 'jhbkjhbkjbkjhbkjbkjhbkjhbk jhbjkhkj hkhbhv jhgvjhgv jhgvjhgvj h', '2021-07-31 04:09:01', '2021-07-31 04:09:01');
 
 -- --------------------------------------------------------
 
@@ -356,13 +353,6 @@ CREATE TABLE `profile` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `profile`
---
-
-INSERT INTO `profile` (`id`, `logo`, `name`, `address`, `phone`, `wa`, `email`, `schedule`, `facebook`, `youtube`, `instagram`, `twitter`, `text`, `created_at`, `updated_at`) VALUES
-(1, '', 'SMK HEHE BOY', 'Tokyo deket rumah kaori', '3209987', '081221212', 'sekolah@gmail.com', 'Senin - Jum\'at | 07.00 - 17.00', 'facebook.com', 'yutub.com', 'ig.com', 'tw.com', 'Pada suatu hari seorang bujangan sedang berfikir keras..', '2021-07-24 21:20:39', '2021-07-24 21:20:39');
 
 -- --------------------------------------------------------
 
@@ -625,7 +615,7 @@ ALTER TABLE `achievment`
 -- AUTO_INCREMENT untuk tabel `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `download`
@@ -673,7 +663,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT untuk tabel `major`
 --
 ALTER TABLE `major`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
@@ -709,7 +699,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT untuk tabel `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

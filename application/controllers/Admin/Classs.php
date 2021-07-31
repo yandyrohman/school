@@ -18,7 +18,6 @@ class Classs extends CI_Controller {
 		$dataStore = [
 			'major_id' => $data['major_id'],
 			'name' => $data['name'],
-			'grade' => $data['grade'],
 			'created_at' => date('Y-m-d H:i:s'),
 			'updated_at' => date('Y-m-d H:i:s')
 		];
@@ -30,7 +29,9 @@ class Classs extends CI_Controller {
 		$this->isLogin();
 		$this->session->set_userdata(['page' => 'class']);
 
-		$datas = $this->db->get('class')->result();
+		$datas = $this->db->where([
+			'major_id !=' => 0
+		])->get('class')->result();
 		$msg = $this->session->flashdata('msg');
 		$this->load->view('admin/app', [
 			'view' => 'admin/class/index',
@@ -39,8 +40,23 @@ class Classs extends CI_Controller {
 		]);
 	}
 
+	private function createNonClass() {
+		$exist = $this->db->get_where('class', [
+			'major_id' => 0
+		])->result();
+		if (count($exist) == 0) {
+			$this->db->insert('class', [
+				'major_id' => 0,
+				'name' => 'Alumni',
+				'created_at' => date('Y-m-d H:i:s'),
+				'updated_at' => date('Y-m-d H:i:s')
+			]);
+		}
+	}
+
 	public function create() {
 		$this->isLogin();
+		$this->createNonClass();
 		$majors = $this->db->get('major')->result();
 		$this->load->view('admin/app', [
 			'view' => 'admin/class/form',

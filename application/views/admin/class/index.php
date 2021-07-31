@@ -16,7 +16,6 @@
           <tr>
             <th>#</th>
             <th>Nama Kelas</th>
-            <th>Tingkat</th>
             <th>Option</th>
           </tr>
         </thead>
@@ -32,7 +31,6 @@
             <tr>
               <td><?= $i + 1 ?></td>
               <td><?= $data->name ?></td>
-              <td><?= $data->grade ?></td>
               <td class="flex">
                 <a class="btn btn-sm btn-danger ml-1" href="#" onclick="deleteData(<?= $data->id ?>)">
                   <i class="material-icons">delete</i>
