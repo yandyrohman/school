@@ -13,7 +13,11 @@
           <label>Logo</label><br/>
           <div class="d-flex">
             <div class="profile-img-wrapper">
-              <img id="logo" style="height: 50px" src="<?= base_url('img/profile/logo.png') ?>">
+              <img 
+                id="logo" 
+                style="height: 50px" 
+                onerror="null;this.src='<?= base_url().'img/profile/default.jpg' ?>'"
+                src="<?= base_url('img/profile/logo.png') ?>">
             </div>
             <div class="ml-3">
               <input type="file" class="form-control" name="logo"/>

@@ -1,4 +1,4 @@
-<footer id="footer">
+<footer>
   <div class="footer-col">
     <div class="footer-title-prime"><?= $profile->name ?? 'UNKNOWN' ?></div>
     <div class="footer-text"><?= $profile->text ?? 'belum ada profile sekolah, silahkan tambahkan di admin.' ?></div>

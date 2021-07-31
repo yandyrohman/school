@@ -20,7 +20,9 @@ class Login extends CI_Controller {
         if ($isExist) {
             $this->session->set_userdata([
                 'has_login' => true,
-                'user_id' => $isExist->id
+                'user_id' => $isExist->id,
+                'role' => $isExist->role,
+                'role_name' => $this->roleName($isExist->role)
             ]);
             return redirect(base_url('admin/event'));
         } else {
@@ -33,6 +35,16 @@ class Login extends CI_Controller {
     public function logout() {
         $this->session->unset_userdata(['has_login', 'user_id']);
         return redirect(base_url('/'));
+    }
+
+    private function roleName($role) {
+        if ($role == 1) {
+            return 'Administrator';
+        } else if ($role == 2) {
+            return 'Staff Umum';
+        } else {
+            return 'User';
+        }
     }
 
 }

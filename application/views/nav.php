@@ -58,7 +58,7 @@
         <i class="material-icons">keyboard_arrow_down</i>
       </span>
       <div class="nav-submenu" data-sub-target="4">
-        <a href="#footer">Kontak</a>
+        <a href="https://api.whatsapp.com/send?phone=<?= $profile->wa ?? 'null' ?>" target="_blank">Chat WhatsApp</a>
       </div>
     </div>
     <a class="nav-menu" href="<?= base_url('login') ?>">
@@ -123,7 +123,7 @@
       <i class="material-icons">keyboard_arrow_right</i>
     </div>
     <div class="s-submenus" data-menu-target="4">
-      <a class="s-submenu" href="#footer">Kontak</a>
+      <a class="s-submenu" href="https://api.whatsapp.com/send?phone=<?= $profile->wa ?? 'null' ?>" target="_blank">Chat WhatsApp</a>
     </div>
     <a class="s-menu" href="<?= base_url('login') ?>">
       <span>Login</span>

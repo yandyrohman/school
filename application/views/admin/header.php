@@ -6,14 +6,15 @@
             </a>
             <div class="navbar-brand">
                 <a href="index.html" class="logo">
-                    <!-- <b class="logo-icon">
-                        <img src="../../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                        <img src="../../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-                    </b> -->
                     <span class="logo-text">
-                        <img class="logo-img" src="<?= base_url().'img/profile/logo.png' ?>" alt="homepage" />
+                        <img 
+                            class="logo-img"
+                            onerror="null;this.src='<?= base_url().'img/profile/default.jpg' ?>'"
+                            src="<?= base_url().'img/profile/logo.png' ?>" 
+                            alt="homepage" 
+                        />
                     </span>
-                    <div class="logo-title">Administrator</div>
+                    <div class="logo-title"><?= $_SESSION['role_name'] ?></div>
                 </a>
             </div>
             <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"

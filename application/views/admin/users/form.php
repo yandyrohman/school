@@ -92,8 +92,7 @@
           <select name="role" required class="form-control">
             <option value="" hidden>- Pilih Role -</option>
             <option value="1" <?= ($data->role ?? '') == '1' ? 'selected' : '' ?>>Administrator</option>
-            <option value="2" <?= ($data->role ?? '') == '2' ? 'selected' : '' ?>>Staff TU</option>
-            <option value="3" <?= ($data->role ?? '') == '3' ? 'selected' : '' ?>>Staff Umum</option>
+            <option value="2" <?= ($data->role ?? '') == '2' ? 'selected' : '' ?>>Staff Umum</option>
           </select>
         </div>
 
