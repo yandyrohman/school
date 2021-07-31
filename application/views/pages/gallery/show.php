@@ -2,26 +2,7 @@
     <?= $content ?>
 </div>
 <div class="page-layout-show-gallery">
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
-    <img src="<?= base_url('img/achievment/1.jpg') ?>" />
+    <?php foreach($photos as $photo) : ?>
+        <img src="<?= base_url('img/gallery/'.$photo->photo) ?>" onclick="window.open('<?= base_url('img/gallery/'.$photo->photo) ?>')" />
+    <?php endforeach; ?>
 </div>

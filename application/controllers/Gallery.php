@@ -33,20 +33,24 @@ class Gallery extends CI_Controller {
 	}
     
     public function show($id) {
-		$data = $this->db->get_where('gallery', [
+		$photos = $this->db->get_where('photo', [
+			'gallery_id' => $id
+		])->result();
+		$gallery = $this->db->get_where('gallery', [
 			'id' => $id
 		])->row();
 
-		if ($data == null) {
+		if (count($photos) == 0) {
 			echo "halaman tidak ditemukan";
 			return;
 		} else {
 			$this->load->view('pages/layout', [
-				'title' => $data->title,
+				'title' => $gallery->title,
                 'sub' => 'Galeri',
                 'sublink' => 'gallery/list',
 				'page' => 'gallery/show',
-				'content' => $data->text,
+				'photos' => $photos,
+				'content' => $gallery->text,
 				'majors' => $this->dataMajor(),
 				'profile' => $this->dataProfile(),
 				'extras' => $this->dataExtra()
