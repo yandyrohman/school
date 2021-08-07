@@ -36,3 +36,13 @@ function pages_banner() {
         return base_url('img/face/default.png');
     }
 }
+
+function school_name() {
+    $ci = get_instance();
+    $profile = $ci->db->get('profile')->result();
+    if (count($profile) != 0) {
+        return $profile[0]->name;
+    } else {
+        return 'UNKNOWN';
+    }
+}

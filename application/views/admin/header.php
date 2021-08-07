@@ -5,7 +5,7 @@
                 <i class="ti-menu ti-close"></i>
             </a>
             <div class="navbar-brand">
-                <a href="index.html" class="logo">
+                <div class="logo none-select">
                     <span class="logo-text">
                         <img 
                             class="logo-img"
@@ -15,7 +15,7 @@
                         />
                     </span>
                     <div class="logo-title"><?= $_SESSION['role_name'] ?></div>
-                </a>
+                </div>
             </div>
             <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
                 data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,7 +26,7 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
             <ul class="navbar-nav float-left mr-auto">
                 <li style="margin-left: 20px; font-size: 18px; font-weight: bold">
-                    <div>SMK Nurul Islam</div>
+                    <div><?= school_name() ?></div>
                 </li>
             </ul>
             <ul class="navbar-nav float-right">
@@ -90,6 +90,10 @@
 
 .dropdown-item:active {
     background: #ccc;
+}
+
+.none-select {
+    user-select: none;
 }
 </style>
 
